@@ -1,0 +1,284 @@
+{
+  "version": "2026-07-14",
+  "weeks": [
+    {
+      "id": "week-1",
+      "week": 1,
+      "title": "第 1 週：共同基礎＋AZ-900 雲端與架構",
+      "days": [
+        {
+          "day": 1,
+          "title": "基準測驗與考綱定位",
+          "reading": "讀兩科官方 Study Guide；各做一次 Practice Assessment，不查答案。",
+          "output": "建立錯題分類表；記錄每個領域的正確率。",
+          "passCriteria": "能說出兩科考綱權重與共同主題。",
+          "exam": "共同"
+        },
+        {
+          "day": 2,
+          "title": "雲端模型與共同責任",
+          "reading": "公用／私人／混合雲；IaaS／PaaS／SaaS；共同責任。",
+          "output": "畫出責任轉移表；用一個校務系統情境各舉一例。",
+          "passCriteria": "看見「修補作業系統」就能判斷責任方。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 3,
+          "title": "雲端效益與成本觀念",
+          "reading": "高可用性、可擴縮性、彈性、可靠性、可預測性、CapEx／OpEx。",
+          "output": "製作效益與情境對照卡。",
+          "passCriteria": "不把 scalability 與 elasticity 混為一談。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 4,
+          "title": "Azure 實體與管理架構",
+          "reading": "資料中心、區域、可用性區域、區域配對、主權區域；管理群組至資源。",
+          "output": "畫出 Management Group → Subscription → Resource Group → Resource。",
+          "passCriteria": "能區分「容錯位置」與「治理範圍」。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 5,
+          "title": "計算服務",
+          "reading": "VM、VM Scale Sets、Availability Sets、Azure Virtual Desktop、App Service、Container、Functions。",
+          "output": "以控制程度與維運負擔製作比較表。",
+          "passCriteria": "能由「無伺服器、事件觸發」選出 Functions。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 6,
+          "title": "網路服務",
+          "reading": "VNet、Subnet、Peering、Azure DNS、VPN Gateway、ExpressRoute、公用／私人端點。",
+          "output": "畫一張內部網路連線情境圖。",
+          "passCriteria": "能區分 VPN Gateway 與 ExpressRoute。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 7,
+          "title": "儲存體＋週測",
+          "reading": "Blob、Files、Queue、Table、Disk；存取層級；LRS／ZRS／GRS／GZRS／RA。",
+          "output": "完成 30 題週測；整理 10 張錯題卡。",
+          "passCriteria": "週測達 75%；未達則重讀第 2~6 天。",
+          "exam": "AZ-900"
+        }
+      ]
+    },
+    {
+      "id": "week-2",
+      "week": 2,
+      "title": "第 2 週：完成 AZ-900＋第一次正式模擬",
+      "days": [
+        {
+          "day": 8,
+          "title": "Azure 身分與安全共同章",
+          "reading": "Microsoft Entra ID、Domain Services、SSO、MFA、passwordless、Conditional Access、Azure RBAC。",
+          "output": "建立「驗證／授權／條件／角色」四格表。",
+          "passCriteria": "能區分 Entra 角色與 Azure 資源角色。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 9,
+          "title": "成本管理",
+          "reading": "成本因素、Pricing Calculator、Cost Management、Budgets、Tags。",
+          "output": "用假想工作負載列出五個成本驅動因子。",
+          "passCriteria": "知道 Tags 不能直接阻止建立資源。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 10,
+          "title": "治理與合規",
+          "reading": "Azure Policy、Initiative、Resource Locks、Microsoft Purview、治理範圍。",
+          "output": "比較 Policy／RBAC／Lock／Tag。",
+          "passCriteria": "情境中能選出「阻止不合規設定」的 Policy。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 11,
+          "title": "管理與部署工具",
+          "reading": "Portal、Cloud Shell、CLI、PowerShell、Azure Arc、IaC、ARM／Bicep 概念。",
+          "output": "用「互動式／自動化／跨環境」分類工具。",
+          "passCriteria": "知道 ARM 是控制層與部署模型。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 12,
+          "title": "監視工具",
+          "reading": "Azure Monitor、Log Analytics、Alerts、Application Insights、Advisor、Service Health。",
+          "output": "製作監視產品判斷樹。",
+          "passCriteria": "能分辨平台事件、遙測與最佳化建議。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 13,
+          "title": "AZ-900 全科回顧",
+          "reading": "只讀錯題章節與速查表。",
+          "output": "完成官方 Practice Assessment 第二次；逐題寫理由。",
+          "passCriteria": "至少 80%；同一概念不得連錯兩次。",
+          "exam": "AZ-900"
+        },
+        {
+          "day": 14,
+          "title": "AZ-900 模擬／應考日",
+          "reading": "完成本書 AZ-900 模擬題，限時 45 分鐘。",
+          "output": "若兩次模擬都達 85%，可安排正式考試；否則延後 2~3 天補洞。",
+          "passCriteria": "能在 35 分鐘完成第一輪，保留複查時間。",
+          "exam": "AZ-900"
+        }
+      ]
+    },
+    {
+      "id": "week-3",
+      "week": 3,
+      "title": "第 3 週：SC-900 核心概念＋Microsoft Entra",
+      "days": [
+        {
+          "day": 15,
+          "title": "SCI 與 Zero Trust",
+          "reading": "安全性、合規性、身分；共同責任、縱深防禦、Zero Trust、GRC。",
+          "output": "把三項 Zero Trust 原則各配一個控制。",
+          "passCriteria": "能辨識「明確驗證／最低權限／假設入侵」。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 16,
+          "title": "身分基本觀念",
+          "reading": "身分是主要安全界限；Authentication、Authorization、IdP、Directory、Federation。",
+          "output": "以登入校務系統為例拆解身分流程。",
+          "passCriteria": "不把 federation 當成同步。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 17,
+          "title": "Entra ID 與身分類型",
+          "reading": "使用者、群組、裝置、服務主體、受控識別、工作負載身分、Agent ID、混合式身分、External ID。",
+          "output": "做「人類／工作負載／AI 代理程式／外部使用者」分類。",
+          "passCriteria": "知道 Agent ID 是 2026 新版明列重點。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 18,
+          "title": "驗證能力",
+          "reading": "MFA、passwordless、FIDO2／passkey、Windows Hello、Authenticator、SSPR、Password Protection。",
+          "output": "列出強驗證優先順序與適用情境。",
+          "passCriteria": "知道 MFA 是多個要素，不等於兩個密碼。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 19,
+          "title": "存取管理",
+          "reading": "Conditional Access 的訊號、決策與控制；Entra roles；Azure RBAC。",
+          "output": "用「若……則……」寫三條條件式存取原則。",
+          "passCriteria": "知道 Conditional Access 在第一要素驗證後評估。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 20,
+          "title": "身分治理與保護",
+          "reading": "ID Governance、Access Reviews、PIM、ID Protection。",
+          "output": "比較「定期確認、臨時提權、偵測風險」。",
+          "passCriteria": "能把 PIM 與永久管理員權限區分。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 21,
+          "title": "Entra 週測",
+          "reading": "完成 35 題身分與治理練習。",
+          "output": "整理所有「角色／風險／存取」錯題。",
+          "passCriteria": "達 80%；PIM／Access Reviews／ID Protection 不再混淆。",
+          "exam": "SC-900"
+        }
+      ]
+    },
+    {
+      "id": "week-4",
+      "week": 4,
+      "title": "第 4 週：Microsoft 安全性＋Purview＋整合模擬",
+      "days": [
+        {
+          "day": 22,
+          "title": "Azure 核心安全服務",
+          "reading": "DDoS Protection、Azure Firewall、WAF、NSG、VNet segmentation、Bastion、Key Vault。",
+          "output": "按網路層級與保護對象做比較。",
+          "passCriteria": "能由「Web 攻擊」選 WAF，而非一般 Firewall。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 23,
+          "title": "Defender for Cloud",
+          "reading": "CSPM、Secure Score、Recommendations、Regulatory Compliance、CWPP、CNAPP。",
+          "output": "分辨態勢管理與工作負載威脅防護。",
+          "passCriteria": "知道 Defender for Cloud 不等於 Sentinel。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 24,
+          "title": "Microsoft Sentinel",
+          "reading": "SIEM、SOAR、Data connectors、Analytics rules、Incidents、Hunting、Automation rules、Playbooks。",
+          "output": "把收集→偵測→調查→回應排成流程。",
+          "passCriteria": "知道 Playbook 建構於 Azure Logic Apps。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 25,
+          "title": "Microsoft Defender XDR",
+          "reading": "Endpoint、Office 365、Identity、Cloud Apps、Vulnerability Management、Threat Intelligence、Defender portal。",
+          "output": "將每個 Defender 產品配對保護面。",
+          "passCriteria": "能分辨 Defender for Identity 與 Entra ID Protection。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 26,
+          "title": "Service Trust＋Compliance Manager",
+          "reading": "Service Trust Portal、隱私權原則、Compliance Manager、Compliance Score。",
+          "output": "整理「證明 Microsoft 控制」與「管理自家改善」的差異。",
+          "passCriteria": "知道 Compliance Score 不是法律保證。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 27,
+          "title": "Purview 資料保護與調查",
+          "reading": "分類、敏感度標籤、DLP、Retention、Records、Content Explorer、Activity Explorer、Insider Risk、eDiscovery、Audit。",
+          "output": "製作 Purview 情境判斷表。",
+          "passCriteria": "能分辨標示、阻擋、保存、搜尋與查核。",
+          "exam": "SC-900"
+        },
+        {
+          "day": 28,
+          "title": "SC-900 模擬＋雙科總整理",
+          "reading": "完成本書 SC-900 模擬題，限時 45 分鐘；再讀雙科重疊表。",
+          "output": "錯題只回到對應段落；不再增加新來源。",
+          "passCriteria": "兩次模擬達 85%；第一輪作答不超過 35 分鐘。",
+          "exam": "SC-900"
+        }
+      ]
+    }
+  ],
+  "wrongAnswerMethod": [
+    {
+      "type": "名詞混淆",
+      "symptom": "把 authentication 與 authorization、Policy 與 RBAC 等概念對調。",
+      "remedy": "做一張二欄比較卡，強迫寫出「控制什麼」與「不控制什麼」。"
+    },
+    {
+      "type": "範圍判斷錯誤",
+      "symptom": "選到功能正確但管理範圍不對的產品。",
+      "remedy": "標記 scope：tenant、management group、subscription、resource group、resource、data。"
+    },
+    {
+      "type": "責任歸屬錯誤",
+      "symptom": "未依 IaaS／PaaS／SaaS 判斷 Microsoft 與客戶責任。",
+      "remedy": "回到共同責任矩陣；永遠先確認服務模型。"
+    },
+    {
+      "type": "最佳解陷阱",
+      "symptom": "多個選項都能做到，但題目要求最少維運、最低成本或最符合原生功能。",
+      "remedy": "圈出「最佳、最少、直接、原生、最低管理負擔」等限制詞。"
+    },
+    {
+      "type": "否定詞漏看",
+      "symptom": "忽略「不需要、不能、例外、最不適合」。",
+      "remedy": "作答前先框起否定詞，再看選項。"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "A1",
+    "title": "AZ-900 官方學習指南（繁體中文）",
+    "url": "https://learn.microsoft.com/zh-tw/credentials/certifications/resources/study-guides/az-900",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "S1",
+    "title": "SC-900 官方學習指南（繁體中文）",
+    "url": "https://learn.microsoft.com/zh-tw/credentials/certifications/resources/study-guides/sc-900",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "A2",
+    "title": "Microsoft Certified: Azure Fundamentals",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "S2",
+    "title": "Microsoft Certified: Security, Compliance, and Identity Fundamentals",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/security-compliance-and-identity-fundamentals/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "A3",
+    "title": "AZ-900 Learn：Describe cloud concepts",
+    "url": "https://learn.microsoft.com/en-us/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "A4",
+    "title": "AZ-900 Learn：Describe Azure architecture and services",
+    "url": "https://learn.microsoft.com/en-us/training/paths/azure-fundamentals-describe-azure-architecture-services/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "A5",
+    "title": "AZ-900 Learn：Describe Azure management and governance",
+    "url": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "S3",
+    "title": "SC-900 Learn：Security, compliance, and identity concepts",
+    "url": "https://learn.microsoft.com/en-us/training/paths/describe-concepts-of-security-compliance-identity/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "S4",
+    "title": "SC-900 Learn：Introduction to Microsoft Entra",
+    "url": "https://learn.microsoft.com/en-us/training/paths/describe-capabilities-of-microsoft-identity-access/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "S5",
+    "title": "SC-900 Learn：Introduction to Microsoft security solutions",
+    "url": "https://learn.microsoft.com/en-us/training/paths/describe-capabilities-of-microsoft-security-solutions/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "S6",
+    "title": "SC-900 Learn：Introduction to Microsoft Purview and privacy principles",
+    "url": "https://learn.microsoft.com/en-us/training/paths/describe-capabilities-of-microsoft-compliance-solutions/",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "C1",
+    "title": "Shared responsibility in the cloud",
+    "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "C2",
+    "title": "Zero Trust as a security foundation",
+    "url": "https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "I1",
+    "title": "What is Microsoft Entra?",
+    "url": "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "I2",
+    "title": "What is Conditional Access?",
+    "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "I3",
+    "title": "What is Microsoft Entra Privileged Identity Management?",
+    "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "I4",
+    "title": "What are access reviews?",
+    "url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "I5",
+    "title": "What is Microsoft Entra ID Protection?",
+    "url": "https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "AZ1",
+    "title": "Azure Storage redundancy",
+    "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "AZ2",
+    "title": "Azure role-based access control overview",
+    "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "AZ3",
+    "title": "Azure Policy overview",
+    "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "AZ4",
+    "title": "Azure Monitor overview",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "D1",
+    "title": "Microsoft Defender for Cloud overview",
+    "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "D2",
+    "title": "Microsoft Sentinel overview",
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "D3",
+    "title": "Microsoft Defender XDR overview",
+    "url": "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "P1",
+    "title": "Microsoft Purview overview",
+    "url": "https://learn.microsoft.com/en-us/purview/purview",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "P2",
+    "title": "Microsoft Purview Compliance Manager",
+    "url": "https://learn.microsoft.com/en-us/purview/compliance-manager",
+    "publisher": "Microsoft Learn"
+  },
+  {
+    "id": "R1",
+    "title": "Microsoft Certification Renewal",
+    "url": "https://learn.microsoft.com/en-us/credentials/certifications/renew-your-microsoft-certification",
+    "publisher": "Microsoft Learn"
+  }
+]

@@ -1,0 +1,1254 @@
+{
+  "version": "2026-07-14",
+  "categories": [
+    {
+      "id": "a",
+      "title": "A．雲端、架構與 Azure 服務",
+      "terms": [
+        {
+          "id": "a-availability",
+          "term": "Availability（雲端可用性）",
+          "explanation": "服務在需要時可被存取與使用的程度。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-high-availability-ha",
+          "term": "High Availability（HA）",
+          "explanation": "高可用性。透過冗餘與故障轉移降低停機。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-reliability",
+          "term": "Reliability",
+          "explanation": "可靠性。系統在失敗後恢復並持續提供預期功能的能力。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-resiliency",
+          "term": "Resiliency",
+          "explanation": "復原力。面對故障仍能承受、調整並恢復。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-scalability",
+          "term": "Scalability",
+          "explanation": "可擴縮性。增加或減少資源容量。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-elasticity",
+          "term": "Elasticity",
+          "explanation": "彈性。依需求快速或自動擴縮。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-vertical-scaling",
+          "term": "Vertical scaling",
+          "explanation": "垂直擴充。把單一資源換成更大或更小規格。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-horizontal-scaling",
+          "term": "Horizontal scaling",
+          "explanation": "水平擴充。增加或減少多個執行個體。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-capex",
+          "term": "CapEx",
+          "explanation": "資本支出。前置購買硬體與設備。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-opex",
+          "term": "OpEx",
+          "explanation": "營運支出。持續支付使用與訂閱費用。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-consumption-based-model",
+          "term": "Consumption-based model",
+          "explanation": "消費式模型。依實際使用量計費。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-public-cloud",
+          "term": "Public cloud",
+          "explanation": "公用雲端。由服務提供者營運的共享雲端平台。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-private-cloud",
+          "term": "Private cloud",
+          "explanation": "私人雲端。專供單一組織使用的雲端環境。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-hybrid-cloud",
+          "term": "Hybrid cloud",
+          "explanation": "混合式雲端。整合公用雲端與私人／內部部署環境。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-iaas",
+          "term": "IaaS",
+          "explanation": "基礎架構即服務。客戶管理 VM 作業系統與應用程式。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-paas",
+          "term": "PaaS",
+          "explanation": "平台即服務。客戶專注應用程式與資料，平台由供應商管理。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-saas",
+          "term": "SaaS",
+          "explanation": "軟體即服務。直接使用完整應用程式。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-serverless",
+          "term": "Serverless",
+          "explanation": "無伺服器運算。平台自動配置資源，使用者不管理伺服器。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-datacenter",
+          "term": "Datacenter",
+          "explanation": "資料中心。包含實體運算、網路、電力與冷卻設施。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-region",
+          "term": "Azure region",
+          "explanation": "Azure 區域。一個或多個鄰近資料中心的地理範圍。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-availability-zone",
+          "term": "Availability Zone",
+          "explanation": "可用性區域。區域內獨立電力、冷卻與網路的實體位置。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-region-pair",
+          "term": "Region pair",
+          "explanation": "區域配對。Microsoft 對部分區域建立的地理配對關係。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-sovereign-region",
+          "term": "Sovereign region",
+          "explanation": "主權區域。因政府或法規需求而隔離營運的區域。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-management-group",
+          "term": "Management Group",
+          "explanation": "管理群組。位於訂用帳戶之上，用於跨訂用帳戶治理。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-subscription",
+          "term": "Subscription",
+          "explanation": "訂用帳戶。計費、配額與存取控制的重要界限。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-resource-group",
+          "term": "Resource Group",
+          "explanation": "資源群組。Azure 資源的邏輯容器。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-resource",
+          "term": "Resource",
+          "explanation": "資源。Azure 中實際建立的服務執行個體。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-resource-manager-arm",
+          "term": "Azure Resource Manager（ARM）",
+          "explanation": "Azure 管理控制層與資源部署模型。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-infrastructure-as-code-iac",
+          "term": "Infrastructure as Code（IaC）",
+          "explanation": "以可版本化的宣告式檔案部署基礎設施。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-arm-template",
+          "term": "ARM template",
+          "explanation": "Azure 原生 JSON 宣告式部署範本。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-bicep",
+          "term": "Bicep",
+          "explanation": "較精簡的 Azure 原生 IaC 語言，會轉譯為 ARM 部署。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-arc",
+          "term": "Azure Arc",
+          "explanation": "將內部部署與其他雲端資源延伸納入 Azure 管理。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-virtual-machine-vm",
+          "term": "Virtual Machine（VM）",
+          "explanation": "提供完整客體作業系統控制的 IaaS 運算。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-vm-scale-sets",
+          "term": "VM Scale Sets",
+          "explanation": "管理並自動擴縮一組相同 VM。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-availability-set",
+          "term": "Availability Set",
+          "explanation": "把 VM 分散到 fault domains 與 update domains。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-virtual-desktop",
+          "term": "Azure Virtual Desktop",
+          "explanation": "Azure 上的桌面與應用程式虛擬化服務。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-app-service",
+          "term": "Azure App Service",
+          "explanation": "受管理的 Web 應用程式與 API PaaS。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-container",
+          "term": "Container",
+          "explanation": "封裝應用程式與相依性、共用主機核心的輕量執行單位。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-functions",
+          "term": "Azure Functions",
+          "explanation": "事件驅動的無伺服器運算服務。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-virtual-network-vnet",
+          "term": "Virtual Network（VNet）",
+          "explanation": "Azure 中的邏輯隔離網路。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-subnet",
+          "term": "Subnet",
+          "explanation": "VNet 內的位址範圍切分。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-vnet-peering",
+          "term": "VNet peering",
+          "explanation": "透過 Microsoft 骨幹連接兩個 VNet。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-vpn-gateway",
+          "term": "VPN Gateway",
+          "explanation": "經公用網際網路建立加密 VPN 連線。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-expressroute",
+          "term": "ExpressRoute",
+          "explanation": "透過連線供應商建立 Azure 私有專線。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-public-endpoint",
+          "term": "Public endpoint",
+          "explanation": "透過公用網路存取服務的端點。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-private-endpoint",
+          "term": "Private endpoint",
+          "explanation": "以 VNet 內私人 IP 存取 PaaS 服務的端點。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-dns",
+          "term": "Azure DNS",
+          "explanation": "Azure 受管理 DNS 網域與名稱解析服務。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-blob-storage",
+          "term": "Blob Storage",
+          "explanation": "物件儲存體，適合非結構化資料。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-azure-files",
+          "term": "Azure Files",
+          "explanation": "受管理 SMB／NFS 檔案共用。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-queue-storage",
+          "term": "Queue Storage",
+          "explanation": "用於非同步訊息與應用程式解耦。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-table-storage",
+          "term": "Table Storage",
+          "explanation": "NoSQL 鍵／屬性資料儲存。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-managed-disks",
+          "term": "Managed Disks",
+          "explanation": "供 Azure VM 使用的受管理區塊儲存體。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-hot-cool-cold-archive",
+          "term": "Hot／Cool／Cold／Archive",
+          "explanation": "Blob 存取層級，依存取頻率在儲存與取用成本間取捨。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-lrs",
+          "term": "LRS",
+          "explanation": "本地備援儲存體，在單一資料中心保存多份複本。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-zrs",
+          "term": "ZRS",
+          "explanation": "區域備援儲存體，跨主要區域多個可用性區域同步複寫。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-grs",
+          "term": "GRS",
+          "explanation": "異地備援儲存體，從主要區域非同步複寫到次要區域。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-gzrs",
+          "term": "GZRS",
+          "explanation": "主要區域使用 ZRS，並非同步複寫到次要區域。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        },
+        {
+          "id": "a-ra-grs-ra-gzrs",
+          "term": "RA-GRS／RA-GZRS",
+          "explanation": "可讀取次要區域的異地備援選項。",
+          "exams": ["AZ-900"],
+          "category": "A．雲端、架構與 Azure 服務"
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "title": "B．身分與存取",
+      "terms": [
+        {
+          "id": "b-identity",
+          "term": "Identity",
+          "explanation": "身分。代表人、裝置、應用程式、工作負載或 AI 代理程式的數位主體。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-authentication",
+          "term": "Authentication",
+          "explanation": "驗證。證明主體真的是其所宣告的身分。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-authorization",
+          "term": "Authorization",
+          "explanation": "授權。決定已驗證主體可執行哪些動作。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-identity-provider-idp",
+          "term": "Identity Provider（IdP）",
+          "explanation": "身分提供者。驗證主體並發出權杖。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-directory-service",
+          "term": "Directory service",
+          "explanation": "目錄服務。儲存與管理使用者、群組、裝置等物件。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-federation",
+          "term": "Federation",
+          "explanation": "同盟。不同信任網域間的身分信任與權杖交換。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-single-sign-on-sso",
+          "term": "Single Sign-On（SSO）",
+          "explanation": "單一登入。一次驗證後存取多個整合應用程式。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-tenant",
+          "term": "Tenant",
+          "explanation": "租用戶。組織在 Microsoft 雲端中的隔離身分與服務邊界。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-microsoft-entra-id",
+          "term": "Microsoft Entra ID",
+          "explanation": "Microsoft 雲端 IAM，舊稱 Azure Active Directory。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-microsoft-entra-domain-services",
+          "term": "Microsoft Entra Domain Services",
+          "explanation": "受管理的 LDAP、Kerberos、NTLM 與 Group Policy。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-external-id",
+          "term": "External ID",
+          "explanation": "用於合作夥伴、來賓與消費者身分存取。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-hybrid-identity",
+          "term": "Hybrid identity",
+          "explanation": "整合內部部署 AD DS 與 Microsoft Entra ID。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-user-identity",
+          "term": "User identity",
+          "explanation": "代表人類使用者的身分。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-device-identity",
+          "term": "Device identity",
+          "explanation": "代表已註冊或加入組織的裝置身分。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-service-principal",
+          "term": "Service principal",
+          "explanation": "應用程式在租用戶中的身分執行個體。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-managed-identity",
+          "term": "Managed identity",
+          "explanation": "由 Azure 管理憑證的工作負載身分。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-workload-identity",
+          "term": "Workload identity",
+          "explanation": "應用程式、服務、容器與自動化的非人類身分。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-agent-id",
+          "term": "Agent ID",
+          "explanation": "為 AI 代理程式提供可治理的企業身分框架。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-mfa",
+          "term": "MFA",
+          "explanation": "多重要素驗證。使用兩個以上不同類型的驗證要素。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-passwordless",
+          "term": "Passwordless",
+          "explanation": "不使用傳統密碼的驗證，例如 passkey、FIDO2、Windows Hello。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-fido2-passkey",
+          "term": "FIDO2／Passkey",
+          "explanation": "以公開金鑰為基礎、具抗網路釣魚能力的驗證。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-sspr",
+          "term": "SSPR",
+          "explanation": "Self-Service Password Reset，使用者自助重設密碼。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-password-protection",
+          "term": "Password Protection",
+          "explanation": "封鎖弱密碼與自訂禁用密碼字詞。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-conditional-access",
+          "term": "Conditional Access",
+          "explanation": "以身分、裝置、位置、風險與應用程式訊號做存取決策。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-microsoft-entra-role",
+          "term": "Microsoft Entra role",
+          "explanation": "管理租用戶與目錄功能的角色。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-azure-rbac",
+          "term": "Azure RBAC",
+          "explanation": "管理 Azure 資源存取的授權系統。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-security-principal",
+          "term": "Security principal",
+          "explanation": "可被授予 Azure 角色的使用者、群組、服務主體或受控識別。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-role-definition",
+          "term": "Role definition",
+          "explanation": "角色所包含的權限集合。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-scope",
+          "term": "Scope",
+          "explanation": "角色或政策適用的資源範圍。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-role-assignment",
+          "term": "Role assignment",
+          "explanation": "把角色定義授予某主體並套用於某範圍。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-least-privilege",
+          "term": "Least privilege",
+          "explanation": "最低權限。只給必要權限、範圍與時間。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-privileged-identity-management-pim",
+          "term": "Privileged Identity Management（PIM）",
+          "explanation": "以 JIT、限時與核准方式管理高權限角色。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-just-in-time-jit",
+          "term": "Just-in-time（JIT）",
+          "explanation": "需要時才臨時取得權限，期限到即失效。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-eligible-assignment",
+          "term": "Eligible assignment",
+          "explanation": "符合啟用資格但尚未直接生效的 PIM 角色指派。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-active-assignment",
+          "term": "Active assignment",
+          "explanation": "角色權限已生效，可立即使用。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-access-reviews",
+          "term": "Access Reviews",
+          "explanation": "定期確認群組、應用程式與角色存取是否仍必要。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-id-governance",
+          "term": "ID Governance",
+          "explanation": "管理身分生命週期、權限與存取治理。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-id-protection",
+          "term": "ID Protection",
+          "explanation": "偵測、調查與修復雲端身分風險。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-risky-user",
+          "term": "Risky user",
+          "explanation": "被判定可能遭入侵的使用者。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-risky-sign-in",
+          "term": "Risky sign-in",
+          "explanation": "可能由攻擊者執行的登入。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        },
+        {
+          "id": "b-risk-detection",
+          "term": "Risk detection",
+          "explanation": "導致風險判斷的個別可疑訊號。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "B．身分與存取"
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "title": "C．安全性與威脅防護",
+      "terms": [
+        {
+          "id": "c-shared-responsibility-model",
+          "term": "Shared responsibility model",
+          "explanation": "共同責任模型。雲端供應商與客戶依服務模型分工。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-zero-trust",
+          "term": "Zero Trust",
+          "explanation": "零信任。永不預設信任，持續驗證。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-verify-explicitly",
+          "term": "Verify explicitly",
+          "explanation": "明確驗證。利用所有可用訊號驗證與授權。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-assume-breach",
+          "term": "Assume breach",
+          "explanation": "假設入侵。預設攻擊者可能已在環境中。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defense-in-depth",
+          "term": "Defense in depth",
+          "explanation": "縱深防禦。用多層控制降低單點失敗。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-encryption",
+          "term": "Encryption",
+          "explanation": "加密。使用金鑰把明文轉為密文，具適當金鑰可還原。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-hashing",
+          "term": "Hashing",
+          "explanation": "雜湊。單向產生固定長度摘要。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-confidentiality",
+          "term": "Confidentiality",
+          "explanation": "機密性。只有獲授權者可存取資料。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-integrity",
+          "term": "Integrity",
+          "explanation": "完整性。資料未遭未授權竄改。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-availability-cia",
+          "term": "Availability（CIA 可用性）",
+          "explanation": "系統與資料在需要時可使用。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-ddos",
+          "term": "DDoS",
+          "explanation": "分散式阻斷服務攻擊，以大量流量耗盡資源。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-azure-ddos-protection",
+          "term": "Azure DDoS Protection",
+          "explanation": "Azure 的 DDoS 攻擊緩解服務。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-azure-firewall",
+          "term": "Azure Firewall",
+          "explanation": "受管理、具狀態的集中式網路防火牆。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-waf",
+          "term": "WAF",
+          "explanation": "Web Application Firewall，防護 HTTP／HTTPS Web 攻擊。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-nsg",
+          "term": "NSG",
+          "explanation": "Network Security Group，以 L3／L4 規則控制流量。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-network-segmentation",
+          "term": "Network segmentation",
+          "explanation": "網路區隔。切分信任區域並限制橫向移動。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-azure-bastion",
+          "term": "Azure Bastion",
+          "explanation": "不暴露公用 RDP／SSH 的 Azure VM 安全連線服務。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-azure-key-vault",
+          "term": "Azure Key Vault",
+          "explanation": "保護金鑰、祕密與憑證的受管理服務。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-soc",
+          "term": "SOC",
+          "explanation": "Security Operations Center，安全營運中心。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-siem",
+          "term": "SIEM",
+          "explanation": "Security Information and Event Management，集中事件與記錄分析。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-soar",
+          "term": "SOAR",
+          "explanation": "Security Orchestration, Automation, and Response，安全協調、自動化與回應。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-xdr",
+          "term": "XDR",
+          "explanation": "Extended Detection and Response，跨安全領域整合偵測與回應。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-cnapp",
+          "term": "CNAPP",
+          "explanation": "Cloud Native Application Protection Platform，雲端原生應用程式保護平台。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-cspm",
+          "term": "CSPM",
+          "explanation": "Cloud Security Posture Management，雲端安全態勢管理。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-cwpp",
+          "term": "CWPP",
+          "explanation": "Cloud Workload Protection Platform，雲端工作負載保護平台。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-microsoft-defender-for-cloud",
+          "term": "Microsoft Defender for Cloud",
+          "explanation": "提供 CSPM、CWPP 與雲端安全建議的 CNAPP。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-secure-score",
+          "term": "Secure Score",
+          "explanation": "依安全建議量化安全態勢改善程度。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-security-recommendation",
+          "term": "Security recommendation",
+          "explanation": "針對錯誤設定與風險提出的改善建議。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-microsoft-sentinel",
+          "term": "Microsoft Sentinel",
+          "explanation": "雲端原生 SIEM／SOAR。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-data-connector",
+          "term": "Data connector",
+          "explanation": "把安全資料來源接入 Sentinel 的連接器。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-analytics-rule",
+          "term": "Analytics rule",
+          "explanation": "依資料模式偵測威脅並建立警示／事件的規則。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-alert",
+          "term": "Alert",
+          "explanation": "單一偵測結果或安全警示。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-incident",
+          "term": "Incident",
+          "explanation": "把相關警示與實體關聯後形成的調查單位。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-threat-hunting",
+          "term": "Threat hunting",
+          "explanation": "主動搜尋未被既有警示發現的可疑活動。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-automation-rule",
+          "term": "Automation rule",
+          "explanation": "集中定義 Sentinel 事件自動處理。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-playbook",
+          "term": "Playbook",
+          "explanation": "以 Azure Logic Apps 建立的 Sentinel 自動回應流程。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-workbook",
+          "term": "Workbook",
+          "explanation": "Sentinel 的互動式視覺報表。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-kql",
+          "term": "KQL",
+          "explanation": "Kusto Query Language，用於 Log Analytics、Sentinel 與 Defender 查詢。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-microsoft-defender-xdr",
+          "term": "Microsoft Defender XDR",
+          "explanation": "跨端點、身分、郵件與應用程式關聯攻擊的整合防護。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defender-for-endpoint",
+          "term": "Defender for Endpoint",
+          "explanation": "端點預防、偵測、調查與回應。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defender-for-office-365",
+          "term": "Defender for Office 365",
+          "explanation": "電子郵件、連結、附件與協作威脅防護。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defender-for-identity",
+          "term": "Defender for Identity",
+          "explanation": "利用內部部署 AD DS 訊號偵測身分攻擊。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defender-for-cloud-apps",
+          "term": "Defender for Cloud Apps",
+          "explanation": "跨 SaaS 可見性、資料控制與威脅防護。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defender-vulnerability-management",
+          "term": "Defender Vulnerability Management",
+          "explanation": "持續弱點可見性、評估與風險式修復。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-defender-threat-intelligence",
+          "term": "Defender Threat Intelligence",
+          "explanation": "提供威脅基礎設施、攻擊者與指標的情報。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        },
+        {
+          "id": "c-microsoft-defender-portal",
+          "term": "Microsoft Defender portal",
+          "explanation": "整合 Microsoft 安全營運體驗的入口網站。",
+          "exams": ["AZ-900", "SC-900"],
+          "category": "C．安全性與威脅防護"
+        }
+      ]
+    },
+    {
+      "id": "d",
+      "title": "D．合規、資料治理與隱私",
+      "terms": [
+        {
+          "id": "d-grc",
+          "term": "GRC",
+          "explanation": "Governance, Risk, and Compliance，治理、風險與合規。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-governance",
+          "term": "Governance",
+          "explanation": "治理。建立決策、政策、責任與監督機制。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-risk",
+          "term": "Risk",
+          "explanation": "風險。不確定性對目標的影響，常以可能性與衝擊評估。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-compliance",
+          "term": "Compliance",
+          "explanation": "合規性。符合外部法規與內部要求並能提出證據。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-data-residency",
+          "term": "Data residency",
+          "explanation": "資料駐留。資料實際儲存與處理的地理位置。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-data-sovereignty",
+          "term": "Data sovereignty",
+          "explanation": "資料主權。資料受所在司法管轄區法律約束。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-service-trust-portal",
+          "term": "Service Trust Portal",
+          "explanation": "提供 Microsoft 稽核報告、合規與信任文件的入口。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-microsoft-purview",
+          "term": "Microsoft Purview",
+          "explanation": "整合資料治理、資料安全與資料合規的解決方案家族。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-microsoft-purview-portal",
+          "term": "Microsoft Purview portal",
+          "explanation": "存取 Purview 資料治理、安全與合規功能的統一入口。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-compliance-manager",
+          "term": "Compliance Manager",
+          "explanation": "管理合規評估、改善動作、責任與證據。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-compliance-score",
+          "term": "Compliance Score",
+          "explanation": "依改善動作量化合規風險管理進度。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-data-classification",
+          "term": "Data classification",
+          "explanation": "資料分類。辨識資料類型與敏感程度。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-sensitive-information-type",
+          "term": "Sensitive information type",
+          "explanation": "以模式與邏輯辨識特定敏感資料的定義。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-sensitivity-label",
+          "term": "Sensitivity label",
+          "explanation": "對內容套用分類、標示、加密與存取保護。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-sensitivity-label-policy",
+          "term": "Sensitivity label policy",
+          "explanation": "發布標籤並設定使用者與預設行為的政策。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-dlp",
+          "term": "DLP",
+          "explanation": "Data Loss Prevention，偵測並阻止敏感資料不當外洩。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-content-explorer",
+          "term": "Content Explorer",
+          "explanation": "查看已分類或標示內容所在位置。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-activity-explorer",
+          "term": "Activity Explorer",
+          "explanation": "查看使用者對敏感內容執行的活動。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-data-lifecycle-management",
+          "term": "Data Lifecycle Management",
+          "explanation": "依生命週期管理內容的保留與刪除。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-retention-policy",
+          "term": "Retention policy",
+          "explanation": "以位置或工作負載為範圍套用保留／刪除。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-retention-label",
+          "term": "Retention label",
+          "explanation": "以單一項目為單位套用保留與處置。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-records-management",
+          "term": "Records Management",
+          "explanation": "對正式記錄套用更嚴格的保存、處置與證據控制。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-ediscovery",
+          "term": "eDiscovery",
+          "explanation": "法律／調查內容的識別、保全、搜尋、檢閱與匯出。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-audit",
+          "term": "Audit",
+          "explanation": "搜尋與調查使用者及系統活動。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-insider-risk-management",
+          "term": "Insider Risk Management",
+          "explanation": "辨識內部人員可能造成的資料風險。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-data-map",
+          "term": "Data Map",
+          "explanation": "掃描並建立資料資產中繼資料地圖。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-unified-catalog",
+          "term": "Unified Catalog",
+          "explanation": "協助探索、理解與治理資料產品與資產。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-privacy",
+          "term": "Privacy",
+          "explanation": "隱私權。對個人資料蒐集、使用、分享與控制的原則與權利。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-legal-hold",
+          "term": "Legal hold",
+          "explanation": "法律保留。防止案件相關內容被刪除或變更。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        },
+        {
+          "id": "d-audit-log",
+          "term": "Audit log",
+          "explanation": "記錄使用者與系統活動的稽核資料。",
+          "exams": ["SC-900"],
+          "category": "D．合規、資料治理與隱私"
+        }
+      ]
+    }
+  ]
+}

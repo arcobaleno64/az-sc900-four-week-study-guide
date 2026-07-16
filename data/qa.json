@@ -1,0 +1,163 @@
+[
+  {
+    "id": "qa-shared",
+    "category": "雲端與責任",
+    "question": "題目寫「服務位於 Azure」，是否代表所有修補都由 Microsoft 負責？",
+    "answer": "不是。先判斷服務模型。Azure Virtual Machines 屬 IaaS，客戶通常負責客體作業系統、應用程式與多數設定；App Service 等 PaaS 由 Microsoft 管平台與執行階段；資料、身分與存取仍是客戶責任。",
+    "keyWords": ["共同責任", "IaaS", "PaaS"]
+  },
+  {
+    "id": "qa-scale",
+    "category": "雲端與責任",
+    "question": "題幹同時出現擴充與縮減，應選 Scalability 還是 Elasticity？",
+    "answer": "Scalability 是增加或減少容量的能力；Elasticity 更強調依需求快速或自動調整。題幹若出現「尖峰自動增加、離峰自動縮減」，優先選 Elasticity。",
+    "keyWords": ["Scalability", "Elasticity"]
+  },
+  {
+    "id": "qa-zone",
+    "category": "Azure 架構",
+    "question": "要防單一資料中心故障，但資料仍留在同一 Azure Region，應選什麼？",
+    "answer": "優先選 Availability Zones。它們是同一 Region 內具獨立電力、冷卻與網路的實體位置；若題目強調整個 Region 災害，才需要跨區域復原與異地備援思維。",
+    "keyWords": ["Availability Zone", "Region"]
+  },
+  {
+    "id": "qa-vpn",
+    "category": "Azure 架構",
+    "question": "VPN Gateway 與 ExpressRoute 的最佳判斷線索是什麼？",
+    "answer": "VPN Gateway 經公用網際網路建立加密通道，成本較低、部署較快；ExpressRoute 透過連線供應商提供私有專線，不走公用網際網路，可預測性較高但成本也較高。",
+    "keyWords": ["VPN Gateway", "ExpressRoute"]
+  },
+  {
+    "id": "qa-private",
+    "category": "Azure 架構",
+    "question": "限制 PaaS 服務只能用 VNet 內私人 IP 存取，為何不是只設防火牆？",
+    "answer": "Private Endpoint 會把服務映射成 VNet 內的私人 IP，直接滿足私人連線要求；防火牆規則可以限制公用端點來源，但端點本身仍可能是公用網路路徑。",
+    "keyWords": ["Private Endpoint", "PaaS"]
+  },
+  {
+    "id": "qa-redundancy",
+    "category": "Azure 架構",
+    "question": "題目要求主要區域跨 Availability Zones，且平時可讀次要區域，應選哪個備援？",
+    "answer": "選 RA-GZRS。GZRS 表示主要區域使用 ZRS，並非同步複寫到次要區域；RA 表示可以讀取次要區域。沒有 RA 的 GZRS 平時不能直接讀取次要複本。",
+    "keyWords": ["RA-GZRS", "ZRS"]
+  },
+  {
+    "id": "qa-tag",
+    "category": "治理與監視",
+    "question": "要求每個資源都有 CostCenter 標記，為何不能只用 Tag？",
+    "answer": "Tag 是中繼資料，能分類與成本整理，但不會自行強制規則。要拒絕未加標記的部署，應使用 Azure Policy；Policy 可以稽核、附加或拒絕不符合設定的資源。",
+    "keyWords": ["Azure Policy", "Tag"]
+  },
+  {
+    "id": "qa-arc",
+    "category": "治理與監視",
+    "question": "Azure Arc 與 Azure Migrate 最容易怎麼混淆？",
+    "answer": "Azure Migrate 用於評估、探索與移轉工作負載；Azure Arc 把內部部署或其他雲端資源延伸納入 Azure 管理、Policy 與治理。Arc 不是搬家卡車，是把管理控制面伸過去。",
+    "keyWords": ["Azure Arc", "Azure Migrate"]
+  },
+  {
+    "id": "qa-insights",
+    "category": "治理與監視",
+    "question": "題目問 Web API 回應時間、相依性與例外，為何選 Application Insights？",
+    "answer": "Application Insights 是 Azure Monitor 內針對應用程式效能與使用情況的能力，能分析追蹤、例外、相依性與回應時間。Service Health 看平台事件，Advisor 給最佳化建議。",
+    "keyWords": ["Application Insights", "Azure Monitor"]
+  },
+  {
+    "id": "qa-federation",
+    "category": "身分與存取",
+    "question": "合作夥伴用自己的 IdP 登入，為何是 Federation 而不是目錄同步？",
+    "answer": "Federation 的核心是不同信任網域間的信任與權杖交換。它不要求把對方完整目錄複製到你的租用戶；同步則是把物件或屬性複製到另一個目錄。",
+    "keyWords": ["Federation", "IdP"]
+  },
+  {
+    "id": "qa-mfa",
+    "category": "身分與存取",
+    "question": "兩組不同密碼能算 MFA 嗎？",
+    "answer": "不能。兩組密碼都屬「知道的東西」，仍是同一類驗證要素。MFA 需要兩個以上不同類型，例如密碼加已註冊裝置驗證，或生物特徵加安全金鑰。",
+    "keyWords": ["MFA", "驗證要素"]
+  },
+  {
+    "id": "qa-ca",
+    "category": "身分與存取",
+    "question": "Conditional Access 與 ID Protection 誰負責風險？",
+    "answer": "ID Protection 偵測 risky users、risky sign-ins 與 risk detections；Conditional Access 使用這些風險與其他訊號，決定封鎖、要求 MFA 或其他控制。前者產生風險訊號，後者執行存取決策。",
+    "keyWords": ["Conditional Access", "ID Protection"]
+  },
+  {
+    "id": "qa-roles",
+    "category": "身分與存取",
+    "question": "Entra 角色與 Azure RBAC 角色的範圍差在哪裡？",
+    "answer": "Microsoft Entra 角色管理租用戶與目錄功能，例如使用者或應用程式管理；Azure RBAC 管 Azure 資源，例如訂用帳戶、資源群組、VM 與儲存體。不要因為都叫角色就把兩套授權系統合併成一團。",
+    "keyWords": ["Entra role", "Azure RBAC"]
+  },
+  {
+    "id": "qa-pim",
+    "category": "身分與存取",
+    "question": "需要管理員臨時啟用高權限，為何不是 Access Reviews？",
+    "answer": "PIM 提供 JIT、限時、需核准與 MFA 的高權限啟用；Access Reviews 是定期確認現有群組、應用程式或角色存取是否仍有必要。題幹出現「臨時」「啟用」「期限」時先想 PIM。",
+    "keyWords": ["PIM", "Access Reviews"]
+  },
+  {
+    "id": "qa-firewalls",
+    "category": "安全性解決方案",
+    "question": "WAF、NSG 與 Azure Firewall 怎麼選？",
+    "answer": "WAF 理解 HTTP／HTTPS 並防護常見 Web 攻擊；NSG 用 L3／L4 的 IP、連接埠與通訊協定規則控制子網或網卡流量；Azure Firewall 是集中式、具狀態的網路防火牆。先看保護層級與題幹動詞。",
+    "keyWords": ["WAF", "NSG", "Azure Firewall"]
+  },
+  {
+    "id": "qa-bastion",
+    "category": "安全性解決方案",
+    "question": "VM 不想暴露公用 RDP／SSH，最直接的 Azure 服務是什麼？",
+    "answer": "Azure Bastion。它透過 Azure portal 與 TLS 提供 RDP／SSH 連線，VM 不需公用 IP。VPN 也能建立私有連線，但題目若強調 portal 與不開公用管理連接埠，Bastion 更直接。",
+    "keyWords": ["Azure Bastion", "RDP", "SSH"]
+  },
+  {
+    "id": "qa-cspm",
+    "category": "安全性解決方案",
+    "question": "Defender for Cloud 的 CSPM 與 CWPP 各自處理什麼？",
+    "answer": "CSPM 改善安全態勢，例如安全建議、Secure Score 與法規符合性；CWPP 保護伺服器、容器、資料庫等工作負載免受威脅。題幹問「錯誤設定與建議」偏 CSPM，問「工作負載攻擊」偏 CWPP。",
+    "keyWords": ["CSPM", "CWPP"]
+  },
+  {
+    "id": "qa-sentinel",
+    "category": "安全性解決方案",
+    "question": "集中第三方記錄並用 Playbook 自動回應，為何選 Sentinel 而不是 Defender XDR？",
+    "answer": "Sentinel 是 SIEM／SOAR，擅長連接多來源資料、分析事件與透過 Logic Apps Playbook 自動回應；Defender XDR 著重跨 Microsoft 端點、身分、郵件與應用程式關聯攻擊故事。",
+    "keyWords": ["Sentinel", "Defender XDR"]
+  },
+  {
+    "id": "qa-identity",
+    "category": "安全性解決方案",
+    "question": "Defender for Identity 與 Entra ID Protection 怎麼分？",
+    "answer": "Defender for Identity 使用內部部署 Active Directory Domain Services 訊號，偵測 Pass-the-Hash、橫向移動等攻擊；Entra ID Protection 著重雲端身分的使用者與登入風險。",
+    "keyWords": ["Defender for Identity", "ID Protection"]
+  },
+  {
+    "id": "qa-trust",
+    "category": "合規與資料治理",
+    "question": "Service Trust Portal 與 Compliance Manager 的差異是什麼？",
+    "answer": "Service Trust Portal 提供 Microsoft 雲端服務的稽核報告、信任與合規文件；Compliance Manager 協助你的組織管理評估、改善動作、責任與證據。前者看 Microsoft 提供的證明，後者管理自家改善工作。",
+    "keyWords": ["Service Trust Portal", "Compliance Manager"]
+  },
+  {
+    "id": "qa-score",
+    "category": "合規與資料治理",
+    "question": "Compliance Score 高，是否代表組織已合法合規？",
+    "answer": "不代表。Compliance Score 是依改善動作量化風險管理進度的指標，能協助排序與追蹤，但不是法律意見，也不保證符合所有法規與契約義務。",
+    "keyWords": ["Compliance Score", "合規"]
+  },
+  {
+    "id": "qa-label",
+    "category": "合規與資料治理",
+    "question": "文件已套用敏感度標籤，為何還需要 DLP？",
+    "answer": "敏感度標籤負責分類、標示、加密與存取保護；DLP 依敏感內容、使用者與傳輸情境警告或阻擋不當外洩。標籤描述與保護內容，DLP 控制內容能否被不當分享。",
+    "keyWords": ["Sensitivity Label", "DLP"]
+  },
+  {
+    "id": "qa-ediscovery",
+    "category": "合規與資料治理",
+    "question": "法律部門要保全與匯出信件，安全團隊要查誰大量下載，應各用什麼？",
+    "answer": "法律內容的識別、保全、搜尋、檢閱與匯出使用 eDiscovery；查詢誰在何時執行大量下載等活動使用 Audit。若題目強調內部行為風險模式，才再考慮 Insider Risk Management。",
+    "keyWords": ["eDiscovery", "Audit"]
+  }
+]

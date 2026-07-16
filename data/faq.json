@@ -1,0 +1,177 @@
+[
+  {
+    "id": "faq-order",
+    "category": "考試與準備",
+    "question": "AZ-900 與 SC-900 應先考哪一科？",
+    "answer": "多數人先準備 AZ-900 較順，因為 SC-900 預設你對 Azure 與 Microsoft 365 有基本概念。本書先完成 AZ-900，再把共同責任、Zero Trust、Microsoft Entra ID 與治理概念帶入 SC-900。已具身分治理或資安經驗者也可先考 SC-900，但不建議同一天硬塞兩科，人的注意力不是無限備援服務。",
+    "related": []
+  },
+  {
+    "id": "faq-four-weeks",
+    "category": "考試與準備",
+    "question": "四週內同時準備兩科是否合理？",
+    "answer": "具一般 IT 基礎、平日可投入約 2~3 小時、週末可投入約 4~5 小時時，四週屬合理但偏密集的節奏。若第一週基準測驗低於 50%，應優先完成一科，不要把同時報考當成人格測驗。",
+    "related": []
+  },
+  {
+    "id": "faq-score",
+    "category": "考試與準備",
+    "question": "700 分是否等於答對 70%？",
+    "answer": "不能直接換算。Microsoft 使用量尺分數，題目可能具有不同權重，700 分是及格門檻，不代表固定答對比例。學習時仍應用各領域正確率與錯題類型判斷弱點。",
+    "related": []
+  },
+  {
+    "id": "faq-practice",
+    "category": "考試與準備",
+    "question": "Practice Assessment 與正式考試有何差異？",
+    "answer": "官方 Practice Assessment 用於熟悉題目風格、措辭與難度，並協助找出知識缺口；題目不等同正式考題，也不代表正式考試的題數與完整複雜度。它是診斷工具，不是可背答案的通關密碼。",
+    "related": []
+  },
+  {
+    "id": "faq-readiness",
+    "category": "考試與準備",
+    "question": "模擬題正確率多少才適合報考？",
+    "answer": "本教材建議在不同題序的兩次模擬中都維持約 85%，且能說明錯誤選項為何不適用。85% 是備考門檻，不是 Microsoft 官方保證。若同一概念連續答錯，平均分數再漂亮也只是統計化妝。",
+    "related": []
+  },
+  {
+    "id": "faq-language",
+    "category": "考試與準備",
+    "question": "繁體中文考試是否會與英文版同日更新？",
+    "answer": "不一定。Microsoft 先更新英文版，在地化語言通常約於八週後更新，但實際時程可能不同。報名前應確認預約頁顯示的考試語言與版本；本教材以 2026 年 7 月 20 日 AZ-900 與 2026 年 7 月 28 日 SC-900 技能清單為主。",
+    "related": []
+  },
+  {
+    "id": "faq-time",
+    "category": "考試與準備",
+    "question": "兩科正式作答時間是多少？",
+    "answer": "AZ-900 與 SC-900 的官方認證頁目前都列出 45 分鐘作答時間。完整預留時間還包含說明、同意條款與作答後問卷，因此預約時仍應以預約頁資訊為準。",
+    "related": []
+  },
+  {
+    "id": "faq-learn-exam",
+    "category": "考試與準備",
+    "question": "Fundamentals 考試可以在作答時查 Microsoft Learn 嗎？",
+    "answer": "不行。Microsoft Learn 的考試內查閱功能不提供給 Fundamentals 考試。準備時把產品定位與關鍵字練成反射，比考場上幻想有搜尋框實際得多。",
+    "related": []
+  },
+  {
+    "id": "faq-last-week",
+    "category": "考試與準備",
+    "question": "最後一週還要讀新教材嗎？",
+    "answer": "除非官方考綱剛更新且出現明確缺口，否則最後一週應以錯題、比較表、官方 Practice Assessment 與速查表為主。新增來源通常只會增加名詞衝突與焦慮，不會神奇地增加可用記憶體。",
+    "related": []
+  },
+  {
+    "id": "faq-auth",
+    "category": "核心觀念",
+    "question": "Authentication 與 Authorization 有何差異？",
+    "answer": "Authentication 是驗證「你是誰」；Authorization 是決定「你能做什麼」。成功登入只代表身分已驗證，不代表具有刪除資源、讀取資料或管理租用戶的權限。",
+    "related": []
+  },
+  {
+    "id": "faq-governance",
+    "category": "核心觀念",
+    "question": "Azure Policy、RBAC、Resource Lock 與 Tag 如何區分？",
+    "answer": "Policy 管資源設定是否符合規則；RBAC 管誰能在何種範圍執行哪些動作；Lock 防止誤刪或誤改；Tag 是分類與成本整理用的中繼資料。看到「拒絕不合規部署」選 Policy，看到「授予 Reader」選 RBAC。",
+    "related": []
+  },
+  {
+    "id": "faq-monitor",
+    "category": "核心觀念",
+    "question": "Azure Advisor、Service Health 與 Azure Monitor 如何區分？",
+    "answer": "Advisor 提供成本、可靠性、安全性與效能最佳化建議；Service Health 顯示影響你資源的 Azure 平台事件與維護；Azure Monitor 收集遙測、記錄、指標與警示。可記成「建議／平台事件／遙測」。",
+    "related": []
+  },
+  {
+    "id": "faq-defenders",
+    "category": "核心觀念",
+    "question": "Defender for Cloud、Defender XDR 與 Sentinel 有何差異？",
+    "answer": "Defender for Cloud 著重雲端安全態勢與工作負載保護；Defender XDR 跨端點、身分、郵件與應用程式關聯攻擊；Sentinel 是雲端原生 SIEM／SOAR，集中多來源資料、偵測、調查與自動回應。",
+    "related": []
+  },
+  {
+    "id": "faq-purview",
+    "category": "核心觀念",
+    "question": "Sensitivity Label、DLP、Retention、eDiscovery 與 Audit 如何區分？",
+    "answer": "Sensitivity Label 用於分類與保護；DLP 用於偵測並阻擋不當外洩；Retention 管保存與刪除；eDiscovery 處理法律內容的識別、保全、檢閱與匯出；Audit 查詢使用者與系統活動。先抓題幹動詞，產品名稱就不會一起在腦中打架。",
+    "related": []
+  },
+  {
+    "id": "faq-regions",
+    "category": "核心觀念",
+    "question": "Region、Availability Zone 與 Region Pair 如何區分？",
+    "answer": "Region 是一個或多個鄰近資料中心組成的地理範圍；Availability Zone 是單一 Region 內具獨立電力、冷卻與網路的實體位置；Region Pair 是 Microsoft 對部分區域建立的地理配對關係，常用於災難復原與平台更新概念。",
+    "related": []
+  },
+  {
+    "id": "faq-services",
+    "category": "核心觀念",
+    "question": "IaaS、PaaS、SaaS 的共同責任如何變化？",
+    "answer": "越往 SaaS，Microsoft 承擔越多底層平台責任；但客戶仍持續對資料、帳號、身分與存取設定負責。IaaS 的客體作業系統通常由客戶修補；PaaS 的平台與執行階段多由 Microsoft 管理。",
+    "related": []
+  },
+  {
+    "id": "faq-zero-trust",
+    "category": "核心觀念",
+    "question": "Zero Trust 是否代表所有要求都拒絕？",
+    "answer": "不是。Zero Trust 的核心是明確驗證、最低權限與假設入侵。它要求每次存取依訊號評估，並提供必要且受限制的權限，不是把所有使用者永久封鎖在門外。",
+    "related": []
+  },
+  {
+    "id": "faq-identity-governance",
+    "category": "核心觀念",
+    "question": "PIM、Access Reviews 與 ID Protection 如何區分？",
+    "answer": "PIM 管理高權限角色的 JIT、限時與核准啟用；Access Reviews 定期確認存取是否仍有必要；ID Protection 偵測、調查與修復雲端身分風險。可記成「臨時提權／定期複查／風險偵測」。",
+    "related": []
+  },
+  {
+    "id": "faq-local",
+    "category": "網站操作",
+    "question": "學習進度儲存在哪裡？",
+    "answer": "第一版將進度、錯題、收藏、備忘與考試日期保存在目前瀏覽器的本機儲存空間，不會送到伺服器。這降低個資與維運負擔，但清除網站資料或更換瀏覽器後不會自動同步。",
+    "related": []
+  },
+  {
+    "id": "faq-device",
+    "category": "網站操作",
+    "question": "為什麼換裝置或換瀏覽器後進度消失？",
+    "answer": "因為資料只保存在原瀏覽器。請在設定頁先匯出進度 JSON，再於另一個瀏覽器匯入。瀏覽器不會通靈，也不應為了核取方塊偷偷建立雲端帳號。",
+    "related": []
+  },
+  {
+    "id": "faq-offline",
+    "category": "網站操作",
+    "question": "網站離線時能否使用？",
+    "answer": "首次成功開啟後，Service Worker 會快取網站外殼與已載入資源；多數教材、題庫與詞庫功能可離線使用。官方外部連結仍需要網路。",
+    "related": []
+  },
+  {
+    "id": "faq-export",
+    "category": "網站操作",
+    "question": "如何備份或移轉學習紀錄？",
+    "answer": "在設定頁選擇「匯出學習紀錄」，網站會下載 JSON 檔。於其他瀏覽器選擇「匯入學習紀錄」即可復原。匯入前會檢查資料格式與版本，避免一份亂碼把整個進度表拖下水。",
+    "related": []
+  },
+  {
+    "id": "faq-reset",
+    "category": "網站操作",
+    "question": "可以只清除錯題，不重設全部進度嗎？",
+    "answer": "可以。題庫頁提供「重練錯題」與「清除錯題紀錄」；設定頁另有完整重設。完整重設前會再次確認，因為不可逆按鈕不該像廣告關閉鈕一樣隨便。",
+    "related": []
+  },
+  {
+    "id": "faq-version",
+    "category": "網站操作",
+    "question": "如何知道教材依據哪一版考綱？",
+    "answer": "首頁、知識頁與設定頁都會顯示資料基準日、考綱生效日與官方來源。內容檔也保留最後審閱日期，日後可透過 Git 追蹤變更。",
+    "related": []
+  },
+  {
+    "id": "faq-privacy",
+    "category": "網站操作",
+    "question": "網站是否會蒐集答題內容或個人資料？",
+    "answer": "此版本沒有帳號、後端資料庫或公開留言功能。除非部署者另行加入分析工具，學習資料只留在本機。部署時若啟用 Cloudflare Web Analytics，應在隱私說明中明確揭露。",
+    "related": []
+  }
+]

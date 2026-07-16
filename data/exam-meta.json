@@ -1,0 +1,56 @@
+{
+  "lastVerified": "2026-07-14",
+  "disclaimer": "本網站為原創學習整理，並非 Microsoft 官方出版品，也不包含實際考題或題庫外洩內容。正式應考前，請再次核對 Microsoft Learn 官方考綱與預約頁資訊。",
+  "exams": [
+    {
+      "code": "AZ-900",
+      "name": "Microsoft Azure Fundamentals",
+      "effectiveDate": "2026-07-20",
+      "durationMinutes": 45,
+      "passingScore": 700,
+      "skills": [
+        {
+          "name": "描述雲端概念",
+          "weight": "25%~30%"
+        },
+        {
+          "name": "描述 Azure 架構與服務",
+          "weight": "35%~40%"
+        },
+        {
+          "name": "描述 Azure 管理與治理",
+          "weight": "30%~35%"
+        }
+      ],
+      "studyGuide": "https://learn.microsoft.com/zh-tw/credentials/certifications/resources/study-guides/az-900",
+      "certificationPage": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/"
+    },
+    {
+      "code": "SC-900",
+      "name": "Microsoft Security, Compliance, and Identity Fundamentals",
+      "effectiveDate": "2026-07-28",
+      "durationMinutes": 45,
+      "passingScore": 700,
+      "skills": [
+        {
+          "name": "描述安全性、合規性與身分概念",
+          "weight": "10%~15%"
+        },
+        {
+          "name": "描述 Microsoft Entra 的功能",
+          "weight": "25%~30%"
+        },
+        {
+          "name": "描述 Microsoft 安全性解決方案的功能",
+          "weight": "35%~40%"
+        },
+        {
+          "name": "描述 Microsoft 合規性解決方案的功能",
+          "weight": "20%~25%"
+        }
+      ],
+      "studyGuide": "https://learn.microsoft.com/zh-tw/credentials/certifications/resources/study-guides/sc-900",
+      "certificationPage": "https://learn.microsoft.com/en-us/credentials/certifications/security-compliance-and-identity-fundamentals/"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "mustRemember": {
+    "AZ-900": [
+      "不管哪種雲端模型，資料、帳號與存取永遠是你家的事，Microsoft 不會替你扛。",
+      "IaaS 給最多控制，也帶來最多客體作業系統與應用程式維運責任。",
+      "PaaS 讓你專注程式碼與資料，不必管理底層作業系統。",
+      "SaaS 是直接使用完整應用程式，但仍要管理使用者、資料與設定。",
+      "Availability Zone 是區域內的獨立實體位置；Region 是地理範圍。",
+      "管理群組位於訂用帳戶之上，適合跨訂用帳戶套用治理。",
+      "一個資源只能屬於一個資源群組，但可移動到另一個資源群組。",
+      "VM Scale Sets 適合大量相同 VM 的水平擴縮。",
+      "Functions 的線索是事件驅動、無伺服器與按執行量。",
+      "ExpressRoute 是私有連線；VPN Gateway 經由公用網際網路建立加密通道。",
+      "Private Endpoint 讓 PaaS 服務以 VNet 中的私人 IP 存取。",
+      "Blob 存物件；Files 提供檔案共用；Queue 傳訊息；Table 存 NoSQL 鍵值資料。",
+      "ZRS 防區域內可用性區域故障；GRS／GZRS 才有跨地理區域複寫。",
+      "RA 前綴表示可直接讀取次要區域。",
+      "看到 LDAP、Kerberos、Group Policy 就想 Domain Services；看到現代雲端登入就想 Entra ID。",
+      "Conditional Access 是依訊號做「若……則……」的存取決策。",
+      "Azure RBAC 是授權系統，核心是 security principal＋role definition＋scope。",
+      "Policy 管合規規則；RBAC 管權限；Lock 防誤刪／誤改；Tag 管分類。",
+      "看到「用檔案定義架構、可重複部署」就是 ARM／Bicep 的地盤，不是手動點 Portal。",
+      "Advisor、Service Health、Monitor 的題幹動詞分別是建議、平台健康、遙測。"
+    ],
+    "SC-900": [
+      "身分已成為主要安全界限，不能只依賴內外網路位置。",
+      "Authentication 證明你是誰；Authorization 決定你能做什麼。",
+      "Federation 是信任與權杖交換，不是目錄同步。",
+      "Zero Trust 三原則是明確驗證、最低權限與假設入侵。",
+      "Encryption 可逆且依賴金鑰；Hashing 是單向摘要。",
+      "GRC 分別回答如何治理、有哪些風險、是否符合要求。",
+      "教材與題目若寫 Azure AD，指的就是 Microsoft Entra ID——舊名詞看到不要愣住。",
+      "Agent ID 讓 AI 代理程式具備可治理、可授權、可稽核的身分。",
+      "受控識別讓 Azure 資源存取服務時不必自行保存祕密。",
+      "MFA 需要不同類型的驗證要素。",
+      "Conditional Access 是「若條件成立，則封鎖或要求控制」。",
+      "Entra roles 管租用戶與目錄；Azure RBAC 管 Azure 資源。",
+      "PIM 提供 JIT、限時與需核准的高權限存取。",
+      "Access Reviews 定期確認存取是否仍有必要。",
+      "ID Protection 偵測 risky users、risky sign-ins 與 risk detections。",
+      "WAF 保護 Web 應用程式；NSG 控制子網／網卡流量；Firewall 做集中網路控管。",
+      "Bastion 讓 VM 不必暴露公用 RDP／SSH。",
+      "Key Vault 用來保護金鑰、祕密與憑證。",
+      "Defender for Cloud 的 CSPM 改善態勢；CWPP 防護工作負載。",
+      "Sentinel 是雲端原生 SIEM／SOAR。",
+      "看到「自動化回應動作」就是 Sentinel 的 Playbook，底層跑在 Logic Apps 上。",
+      "Defender XDR 跨端點、身分、郵件與應用程式關聯攻擊。",
+      "要調 Microsoft 的稽核報告與合規證據，去 Service Trust Portal 找，不是去 Compliance Manager。",
+      "Sensitivity label 分類與保護；DLP 防止不當外洩。",
+      "eDiscovery 找證據；Audit 查活動；Retention 管保存；Insider Risk 看內部行為風險。"
+    ]
+  },
+  "cheatsheet": [
+    {
+      "combination": "Policy／RBAC／Lock／Tag",
+      "summary": "規則／權限／防誤刪／分類"
+    },
+    {
+      "combination": "Advisor／Service Health／Monitor",
+      "summary": "建議／Azure 平台事件／遙測與告警"
+    },
+    {
+      "combination": "LRS／ZRS／GRS／GZRS／RA",
+      "summary": "單站／多區／跨區域／多區＋跨區域／可讀次要區域"
+    },
+    {
+      "combination": "Authentication／Authorization",
+      "summary": "證明身分／決定權限"
+    },
+    {
+      "combination": "Conditional Access／PIM／Access Reviews／ID Protection",
+      "summary": "登入條件／臨時提權／定期複查／風險偵測"
+    },
+    {
+      "combination": "Defender for Cloud／XDR／Sentinel",
+      "summary": "雲端態勢與工作負載／跨 Microsoft 攻擊故事／SIEM＋SOAR"
+    },
+    {
+      "combination": "Label／DLP／Retention／eDiscovery／Audit",
+      "summary": "分類保護／防外洩／保存刪除／法律證據／活動查核"
+    },
+    {
+      "combination": "WAF／Firewall／NSG／DDoS／Bastion",
+      "summary": "Web 攻擊／集中網路控管／L3-L4 規則／流量洪水／安全管理 VM"
+    }
+  ],
+  "examDayChecklist": [
+    "使用個人 Microsoft Account 綁定認證檔案，避免離職或離校後失去組織帳號紀錄。",
+    "再次確認考試語言、考綱版本、時區與線上／考場規定。",
+    "完成 Exam Sandbox，熟悉標記、複查與不同題型操作。",
+    "第一輪先回答有把握題目；否定詞與「選兩項」要圈起來。",
+    "遇到兩個都可行的選項，回到題目限制：範圍、最低管理負擔、原生能力、成本與安全。",
+    "不要因單一陌生產品名失速。先用領域、保護對象與動詞排除。",
+    "作答結束前檢查所有未答題與多選題數量，不要把會的分數留在介面裡發霉。"
+  ]
+}
