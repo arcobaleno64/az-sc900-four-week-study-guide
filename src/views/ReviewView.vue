@@ -5,6 +5,9 @@ import { progress, toggleReviewCheck } from "../store";
 const exam = ref<"AZ-900" | "SC-900">("AZ-900");
 const compact = ref(false);
 const memories = computed(() => review.mustRemember[exam.value]);
+function printPage() {
+  window.print();
+}
 </script>
 <template>
   <section class="page-stack" :class="{ 'compact-review': compact }">
@@ -27,9 +30,7 @@ const memories = computed(() => review.mustRemember[exam.value]);
           <p class="eyebrow">CHEATSHEET</p>
           <h2>一眼辨析</h2>
         </div>
-        <button class="button button--ghost" @click="window.print()">
-          列印
-        </button>
+        <button class="button button--ghost" @click="printPage">列印</button>
       </div>
       <div class="cheat-grid">
         <div

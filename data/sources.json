@@ -114,6 +114,12 @@
     "publisher": "Microsoft Learn"
   },
   {
+    "id": "AZ5",
+    "title": "Access tiers for blob data",
+    "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
+    "publisher": "Microsoft Learn"
+  },
+  {
     "id": "AZ2",
     "title": "Azure role-based access control overview",
     "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",

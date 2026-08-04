@@ -47,7 +47,12 @@ export const examMeta = metaData as {
   disclaimer: string;
   exams: ExamMeta[];
 };
-export const summary = summaryData;
+export const summary = {
+  ...summaryData,
+  questions: questions.length,
+  azQuestions: questions.filter((q) => q.exam === "AZ-900").length,
+  scQuestions: questions.filter((q) => q.exam === "SC-900").length,
+};
 export const chapters = [
   { id: "start-here", title: "開始使用", exam: "共同", raw: startHere },
   { id: "az-900", title: "AZ-900 必備知識", exam: "AZ-900", raw: az900 },

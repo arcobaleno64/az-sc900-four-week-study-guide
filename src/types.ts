@@ -29,19 +29,35 @@ export interface QuestionOption {
   id: string;
   text: string;
 }
-export interface Question {
+export type QuestionType = "single" | "multiple" | "true-false";
+export type QuestionAnswer = string | string[] | boolean;
+interface QuestionBase {
   id: string;
   exam: ExamCode;
   number: number;
+  sourceIds: string[];
   question: string;
-  options: QuestionOption[];
-  answer: string;
   explanation: string;
   trap: string;
   domain: string;
   difficulty: string;
   keywords: string[];
 }
+export interface SingleQuestion extends QuestionBase {
+  type: "single";
+  options: QuestionOption[];
+  answer: string;
+}
+export interface MultipleQuestion extends QuestionBase {
+  type: "multiple";
+  options: QuestionOption[];
+  answer: string[];
+}
+export interface TrueFalseQuestion extends QuestionBase {
+  type: "true-false";
+  answer: boolean;
+}
+export type Question = SingleQuestion | MultipleQuestion | TrueFalseQuestion;
 export interface GlossaryTerm {
   id: string;
   term: string;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch } from "vue";
-import { questions } from "../content";
+import { questions, sources } from "../content";
 import {
   addAttempt,
   clearWrongAnswers,
@@ -8,9 +8,23 @@ import {
   recordQuestion,
 } from "../store";
 import { route } from "../router";
-import { makeId, optionText, percent, shuffled } from "../utils";
+import {
+  answerText,
+  isAnswered,
+  isCorrectOption,
+  isOptionSelected,
+  isQuestionCorrect,
+  questionOptions,
+} from "../quiz";
+import { makeId, percent, shuffled } from "../utils";
 import { showToast } from "../toast";
-import type { ExamCode, Question, QuestionOption, QuizAttempt } from "../types";
+import type {
+  ExamCode,
+  Question,
+  QuestionAnswer,
+  QuestionOption,
+  QuizAttempt,
+} from "../types";
 type Screen = "setup" | "quiz" | "result";
 type ExamFilter = ExamCode | "混合";
 interface DisplayQuestion {
@@ -25,8 +39,9 @@ const mode = ref<"練習模式" | "模擬考模式">("練習模式");
 const wrongOnly = ref(false);
 const current = ref(0);
 const session = ref<DisplayQuestion[]>([]);
-const answers = ref<Record<string, string>>({});
+const answers = ref<Record<string, QuestionAnswer>>({});
 const flagged = ref<string[]>([]);
+const revealed = ref<string[]>([]);
 const submitted = ref(false);
 const remainingSeconds = ref(45 * 60);
 const result = ref<QuizAttempt | null>(null);
@@ -47,11 +62,20 @@ const available = computed(() =>
       (!wrongOnly.value || progress.wrongQuestionIds.includes(q.id)),
   ),
 );
+const countOptions = computed(() =>
+  available.value.length
+    ? [...new Set([10, 25, 50, available.value.length])]
+        .filter((value) => value > 0 && value <= available.value.length)
+        .sort((a, b) => a - b)
+    : [0],
+);
 const active = computed(() => session.value[current.value]);
 const selected = computed(() =>
   active.value ? answers.value[active.value.question.id] : undefined,
 );
-const answeredCount = computed(() => Object.keys(answers.value).length);
+const answeredCount = computed(
+  () => Object.values(answers.value).filter(isAnswered).length,
+);
 const timerText = computed(
   () =>
     `${String(Math.floor(remainingSeconds.value / 60)).padStart(2, "0")}：${String(remainingSeconds.value % 60).padStart(2, "0")}`,
@@ -86,10 +110,14 @@ function startQuiz(specific?: Question[]) {
     specific ?? shuffled(pool).slice(0, Math.min(count.value, pool.length));
   session.value = picked.map((q) => ({
     question: q,
-    options: shuffled(q.options),
+    options:
+      q.type === "true-false"
+        ? questionOptions(q)
+        : shuffled(questionOptions(q)),
   }));
   answers.value = {};
   flagged.value = [];
+  revealed.value = [];
   current.value = 0;
   submitted.value = false;
   result.value = null;
@@ -100,9 +128,34 @@ function startQuiz(specific?: Question[]) {
 }
 function choose(id: string) {
   if (!active.value) return;
-  if (mode.value === "練習模式" && answers.value[active.value.question.id])
+  const question = active.value.question;
+  const questionId = question.id;
+  if (mode.value === "練習模式" && revealed.value.includes(questionId)) return;
+  if (question.type === "multiple") {
+    const currentAnswer = Array.isArray(answers.value[questionId])
+      ? (answers.value[questionId] as string[])
+      : [];
+    const nextAnswer = currentAnswer.includes(id)
+      ? currentAnswer.filter((optionId) => optionId !== id)
+      : [...currentAnswer, id];
+    answers.value = { ...answers.value, [questionId]: nextAnswer };
     return;
-  answers.value = { ...answers.value, [active.value.question.id]: id };
+  }
+  answers.value = {
+    ...answers.value,
+    [questionId]: question.type === "true-false" ? id === "true" : id,
+  };
+  if (mode.value === "練習模式") revealed.value.push(questionId);
+}
+function confirmMultiple() {
+  if (!active.value || !isAnswered(answers.value[active.value.question.id]))
+    return;
+  if (!revealed.value.includes(active.value.question.id))
+    revealed.value.push(active.value.question.id);
+}
+function questionSources(question: Question) {
+  const ids = new Set(question.sourceIds);
+  return sources.filter((source) => ids.has(source.id));
 }
 function toggleFlag() {
   const id = active.value.question.id;
@@ -134,7 +187,7 @@ function finish(force = false) {
   const domainStats: Record<string, { correct: number; total: number }> = {};
   for (const item of session.value) {
     const q = item.question;
-    const ok = answers.value[q.id] === q.answer;
+    const ok = isQuestionCorrect(q, answers.value[q.id]);
     if (ok) correct += 1;
     const d = domainStats[q.domain] ?? { correct: 0, total: 0 };
     d.total += 1;
@@ -163,6 +216,7 @@ function reset() {
   screen.value = "setup";
   session.value = [];
   answers.value = {};
+  revealed.value = [];
   result.value = null;
 }
 function specificFromRoute() {
@@ -177,13 +231,22 @@ watch(() => route.param, specificFromRoute, { immediate: true });
 watch(exam, () => {
   domain.value = "全部";
 });
+watch(
+  countOptions,
+  (options) => {
+    if (!options.includes(count.value)) count.value = options.at(-1) ?? 10;
+  },
+  { immediate: true },
+);
 onBeforeUnmount(stopTimer);
 </script>
 <template>
   <section class="page-stack">
     <div class="page-intro">
       <div>
-        <span class="badge badge--accent">50 題原創情境題</span>
+        <span class="badge badge--accent"
+          >{{ questions.length }} 題原創情境題</span
+        >
         <h2>模擬題</h2>
         <p>
           可依考科、技能領域與錯題篩選。練習模式立即解析，模擬考模式在交卷後統一檢討，因為考場不會在每題後替你拍拍肩。
@@ -224,10 +287,20 @@ onBeforeUnmount(stopTimer);
             <option v-for="item in domains" :key="item">{{ item }}</option>
           </select></label
         ><label
-          >題數<select v-model.number="count">
-            <option :value="10">10 題</option>
-            <option :value="25">25 題</option>
-            <option :value="50">50 題</option>
+          >題數<select v-model.number="count" :disabled="!available.length">
+            <option
+              v-for="option in countOptions"
+              :key="option"
+              :value="option"
+            >
+              {{
+                option === 0
+                  ? "無可用題目"
+                  : option === available.length
+                    ? `全部（${option} 題）`
+                    : `${option} 題`
+              }}
+            </option>
           </select></label
         >
         <div>
@@ -272,8 +345,8 @@ onBeforeUnmount(stopTimer);
         </ol>
         <div class="notice">
           官方及格門檻是量尺分數
-          700，不能直接換算為固定答對比例。本教材以連續兩次約
-          85% 作為較保守的備考門檻。
+          700，不能直接換算為固定答對比例。本教材以連續兩次約 85%
+          作為較保守的備考門檻。
         </div>
       </section>
     </div>
@@ -311,43 +384,94 @@ onBeforeUnmount(stopTimer);
             </button>
           </div>
           <h2>{{ active.question.question }}</h2>
-          <div class="option-list">
+          <p v-if="active.question.type === 'multiple'" class="muted">
+            複選題：請選出所有正確答案。
+          </p>
+          <p v-else-if="active.question.type === 'true-false'" class="muted">
+            是非題：判斷敘述是否正確。
+          </p>
+          <div
+            class="option-list"
+            role="group"
+            :aria-label="
+              active.question.type === 'multiple'
+                ? '複選答案'
+                : active.question.type === 'true-false'
+                  ? '是非答案'
+                  : '單選答案'
+            "
+          >
             <button
               v-for="(option, index) in active.options"
               :key="option.id"
               :class="{
-                selected: selected === option.id,
+                selected: isOptionSelected(
+                  active.question,
+                  selected,
+                  option.id,
+                ),
                 correct:
                   mode === '練習模式' &&
-                  selected &&
-                  option.id === active.question.answer,
+                  revealed.includes(active.question.id) &&
+                  isCorrectOption(active.question, option.id),
                 wrong:
                   mode === '練習模式' &&
-                  selected === option.id &&
-                  option.id !== active.question.answer,
+                  revealed.includes(active.question.id) &&
+                  isOptionSelected(active.question, selected, option.id) &&
+                  !isCorrectOption(active.question, option.id),
               }"
+              :aria-pressed="
+                isOptionSelected(active.question, selected, option.id)
+              "
               @click="choose(option.id)"
             >
-              <span class="option-key">{{
-                ["1", "2", "3", "4"][index]
-              }}</span
+              <span class="option-key">{{ index + 1 }}</span
               ><span>{{ option.text }}</span>
             </button>
           </div>
-          <div
-            v-if="mode === '練習模式' && selected"
-            class="answer-feedback"
-            :data-correct="selected === active.question.answer"
+          <button
+            v-if="
+              mode === '練習模式' &&
+              active.question.type === 'multiple' &&
+              !revealed.includes(active.question.id)
+            "
+            class="button button--primary"
+            :disabled="!isAnswered(selected)"
+            @click="confirmMultiple"
           >
-            <strong>{{
-              selected === active.question.answer ? "答對了" : "答案不符"
+            確認複選答案
+          </button>
+          <div
+            v-if="mode === '練習模式' && revealed.includes(active.question.id)"
+            class="answer-feedback"
+            :data-correct="isQuestionCorrect(active.question, selected)"
+          >
+            <strong role="status">{{
+              isQuestionCorrect(active.question, selected)
+                ? "答對了"
+                : "答案不符"
             }}</strong>
             <p>
               <b>正確答案：</b
-              >{{ optionText(active.question.options, active.question.answer) }}
+              >{{ answerText(active.question, active.question.answer) }}
             </p>
             <p>{{ active.question.explanation }}</p>
             <p><b>常見陷阱：</b>{{ active.question.trap }}</p>
+            <p>
+              <b>官方來源：</b>
+              <span
+                v-for="(source, index) in questionSources(active.question)"
+                :key="source.id"
+                ><a :href="source.url" target="_blank" rel="noopener">{{
+                  source.title
+                }}</a
+                >{{
+                  index < questionSources(active.question).length - 1
+                    ? "、"
+                    : ""
+                }}</span
+              >
+            </p>
           </div>
           <footer class="quiz-card__footer">
             <button
@@ -378,7 +502,7 @@ onBeforeUnmount(stopTimer);
               :key="item.question.id"
               :class="{
                 active: index === current,
-                answered: answers[item.question.id],
+                answered: isAnswered(answers[item.question.id]),
                 flagged: flagged.includes(item.question.id),
               }"
               :aria-label="`前往第 ${index + 1} 題`"
@@ -466,13 +590,15 @@ onBeforeUnmount(stopTimer);
           v-for="(item, index) in session"
           :key="item.question.id"
           class="panel review-card"
-          :data-correct="answers[item.question.id] === item.question.answer"
+          :data-correct="
+            isQuestionCorrect(item.question, answers[item.question.id])
+          "
         >
           <header>
             <span class="badge"
               >{{ item.question.exam }} 第 {{ index + 1 }} 題</span
             ><strong>{{
-              answers[item.question.id] === item.question.answer
+              isQuestionCorrect(item.question, answers[item.question.id])
                 ? "正確"
                 : "需複習"
             }}</strong>
@@ -480,11 +606,11 @@ onBeforeUnmount(stopTimer);
           <h3>{{ item.question.question }}</h3>
           <p>
             <b>你的答案：</b
-            >{{ optionText(item.question.options, answers[item.question.id]) }}
+            >{{ answerText(item.question, answers[item.question.id]) }}
           </p>
           <p>
             <b>正確答案：</b
-            >{{ optionText(item.question.options, item.question.answer) }}
+            >{{ answerText(item.question, item.question.answer) }}
           </p>
           <div class="answer-explanation">
             <strong>解析</strong>
@@ -493,6 +619,23 @@ onBeforeUnmount(stopTimer);
           <div class="trap-note">
             <strong>陷阱</strong>
             <p>{{ item.question.trap }}</p>
+          </div>
+          <div class="answer-explanation">
+            <strong>官方來源</strong>
+            <p>
+              <span
+                v-for="(source, sourceIndex) in questionSources(item.question)"
+                :key="source.id"
+                ><a :href="source.url" target="_blank" rel="noopener">{{
+                  source.title
+                }}</a
+                >{{
+                  sourceIndex < questionSources(item.question).length - 1
+                    ? "、"
+                    : ""
+                }}</span
+              >
+            </p>
           </div>
         </article>
       </div></template

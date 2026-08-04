@@ -3,6 +3,8 @@
     "id": "az900-001",
     "exam": "AZ-900",
     "number": 1,
+    "type": "single",
+    "sourceIds": ["C1"],
     "question": "某組織在 Azure Virtual Machines 上執行自訂應用程式。作業系統出現重大安全更新。依共同責任模型，誰應負責安裝該客體作業系統更新？",
     "options": [
       {
@@ -33,6 +35,8 @@
     "id": "az900-002",
     "exam": "AZ-900",
     "number": 2,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "開發團隊要部署 Web API，但不想管理作業系統修補與 Web 伺服器。哪一項最符合最低管理負擔？",
     "options": [
       {
@@ -63,28 +67,12 @@
     "id": "az900-003",
     "exam": "AZ-900",
     "number": 3,
-    "question": "學校只想直接使用電子郵件與協作功能，不開發或管理應用程式平台。應選哪一種雲端服務模型？",
-    "options": [
-      {
-        "id": "A",
-        "text": "SaaS"
-      },
-      {
-        "id": "B",
-        "text": "Private endpoint"
-      },
-      {
-        "id": "C",
-        "text": "IaaS"
-      },
-      {
-        "id": "D",
-        "text": "PaaS"
-      }
-    ],
-    "answer": "A",
+    "type": "true-false",
+    "sourceIds": ["A3"],
+    "question": "學校只想直接使用電子郵件與協作功能，不開發或管理應用程式平台；這種需求最符合 SaaS。",
+    "answer": true,
     "explanation": "學校拿到的是隨插即用的完整服務（收信、共同編輯），完全不碰底層平台或程式碼，這正是 SaaS 的定義：你只管「用」，其餘交給 Microsoft。",
-    "trap": "Private endpoint 只是一種網路連線方式，跟「雲端服務模型」是兩個不同維度的東西，選它等於把交通工具當成了目的地。",
+    "trap": "若需求是自行開發與部署應用程式、但不管理作業系統，才應考慮 PaaS；直接使用完整應用程式屬 SaaS。",
     "domain": "雲端概念",
     "difficulty": "情境基礎",
     "keywords": []
@@ -93,6 +81,8 @@
     "id": "az900-004",
     "exam": "AZ-900",
     "number": 4,
+    "type": "single",
+    "sourceIds": ["A3"],
     "question": "組織因法規要求，部分敏感資料必須留在自有機房，但尖峰運算可使用 Azure。最適合哪一種部署模型？",
     "options": [
       {
@@ -123,6 +113,8 @@
     "id": "az900-005",
     "exam": "AZ-900",
     "number": 5,
+    "type": "single",
+    "sourceIds": ["A3"],
     "question": "財務單位希望把一次性購買伺服器的支出，改為依實際使用量每月支付。這反映哪個概念？",
     "options": [
       {
@@ -153,6 +145,8 @@
     "id": "az900-006",
     "exam": "AZ-900",
     "number": 6,
+    "type": "single",
+    "sourceIds": ["A3"],
     "question": "應用程式在活動期間自動增加執行個體，活動結束後自動縮減。最直接描述哪項雲端效益？",
     "options": [
       {
@@ -183,6 +177,8 @@
     "id": "az900-007",
     "exam": "AZ-900",
     "number": 7,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "某系統要避免單一 Azure 資料中心失效造成中斷，但資料可留在同一區域。應優先使用哪個概念？",
     "options": [
       {
@@ -213,6 +209,8 @@
     "id": "az900-008",
     "exam": "AZ-900",
     "number": 8,
+    "type": "single",
+    "sourceIds": ["A5"],
     "question": "企業有 12 個 Azure 訂用帳戶，要以單一層級套用 Policy 與 RBAC。應使用哪個範圍？",
     "options": [
       {
@@ -243,6 +241,8 @@
     "id": "az900-009",
     "exam": "AZ-900",
     "number": 9,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "Web 應用程式需要依 CPU 負載自動增加多台相同 VM。哪項服務最適合？",
     "options": [
       {
@@ -273,6 +273,8 @@
     "id": "az900-010",
     "exam": "AZ-900",
     "number": 10,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "每當新的檔案上傳時，只執行數秒的影像處理程式，而且希望依執行量計費。應選哪項服務？",
     "options": [
       {
@@ -303,6 +305,8 @@
     "id": "az900-011",
     "exam": "AZ-900",
     "number": 11,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "組織需要不經公用網際網路、由電信業者提供的 Azure 私有連線。應選哪項服務？",
     "options": [
       {
@@ -333,6 +337,8 @@
     "id": "az900-012",
     "exam": "AZ-900",
     "number": 12,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "Azure Storage 帳戶只能從某 VNet 的私人 IP 存取。應使用哪項功能？",
     "options": [
       {
@@ -363,6 +369,8 @@
     "id": "az900-013",
     "exam": "AZ-900",
     "number": 13,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "應用程式元件需要透過非同步訊息解耦，訊息只需簡單佇列功能。應選哪個 Azure Storage 服務？",
     "options": [
       {
@@ -393,6 +401,8 @@
     "id": "az900-014",
     "exam": "AZ-900",
     "number": 14,
+    "type": "single",
+    "sourceIds": ["AZ5"],
     "question": "法規封存資料幾乎不會讀取，可接受數小時取回時間。哪個 Blob 存取層級最適合？",
     "options": [
       {
@@ -423,6 +433,8 @@
     "id": "az900-015",
     "exam": "AZ-900",
     "number": 15,
+    "type": "single",
+    "sourceIds": ["AZ1"],
     "question": "儲存體要跨主要區域的可用性區域複寫，並非同步複寫到次要區域；平時還要能讀取次要區域。應選哪個選項？",
     "options": [
       {
@@ -453,6 +465,8 @@
     "id": "az900-016",
     "exam": "AZ-900",
     "number": 16,
+    "type": "single",
+    "sourceIds": ["A4"],
     "question": "內部部署 Windows Server 檔案伺服器要保留本機快取，同時同步到 Azure Files。應選哪項工具？",
     "options": [
       {
@@ -483,6 +497,8 @@
     "id": "az900-017",
     "exam": "AZ-900",
     "number": 17,
+    "type": "single",
+    "sourceIds": ["A4", "I1"],
     "question": "舊式應用程式必須使用 LDAP 與 Kerberos，但組織不想自行維護網域控制站。應選哪項服務？",
     "options": [
       {
@@ -513,6 +529,8 @@
     "id": "az900-018",
     "exam": "AZ-900",
     "number": 18,
+    "type": "single",
+    "sourceIds": ["I2"],
     "question": "當管理員從未知國家登入 Azure portal 時，必須要求 MFA。應使用哪項功能？",
     "options": [
       {
@@ -543,6 +561,8 @@
     "id": "az900-019",
     "exam": "AZ-900",
     "number": 19,
+    "type": "single",
+    "sourceIds": ["AZ2"],
     "question": "要讓某群組只能讀取單一資源群組中的資源。應使用哪項服務？",
     "options": [
       {
@@ -573,6 +593,8 @@
     "id": "az900-020",
     "exam": "AZ-900",
     "number": 20,
+    "type": "single",
+    "sourceIds": ["D1"],
     "question": "安全團隊需要看到 Azure 資源的安全建議、Secure Score 與工作負載威脅警示。應使用哪項服務？",
     "options": [
       {
@@ -603,6 +625,8 @@
     "id": "az900-021",
     "exam": "AZ-900",
     "number": 21,
+    "type": "single",
+    "sourceIds": ["AZ3"],
     "question": "組織要拒絕建立未加上 CostCenter 標記的資源。應優先使用哪項工具？",
     "options": [
       {
@@ -633,6 +657,8 @@
     "id": "az900-022",
     "exam": "AZ-900",
     "number": 22,
+    "type": "single",
+    "sourceIds": ["A5"],
     "question": "團隊要把 Azure 基礎設施定義存入版本控制，並可重複部署一致環境。應採用哪個方法？",
     "options": [
       {
@@ -663,6 +689,8 @@
     "id": "az900-023",
     "exam": "AZ-900",
     "number": 23,
+    "type": "single",
+    "sourceIds": ["A5"],
     "question": "企業要把內部部署伺服器與其他雲端資源納入 Azure Policy 與集中治理。應使用哪項服務？",
     "options": [
       {
@@ -693,6 +721,8 @@
     "id": "az900-024",
     "exam": "AZ-900",
     "number": 24,
+    "type": "single",
+    "sourceIds": ["A5"],
     "question": "管理員要確認 Azure 平台維護是否正影響其訂用帳戶中的 VM。應先查看哪項服務？",
     "options": [
       {
@@ -723,6 +753,8 @@
     "id": "az900-025",
     "exam": "AZ-900",
     "number": 25,
+    "type": "single",
+    "sourceIds": ["AZ4"],
     "question": "應用程式團隊要分析 Web API 的回應時間、相依性呼叫與例外。應使用哪項服務？",
     "options": [
       {
@@ -753,6 +785,8 @@
     "id": "sc900-001",
     "exam": "SC-900",
     "number": 1,
+    "type": "single",
+    "sourceIds": ["S3"],
     "question": "使用者已成功登入，但仍無法刪除 Azure 資源。哪個概念最直接決定他是否能刪除？",
     "options": [
       {
@@ -783,6 +817,8 @@
     "id": "sc900-002",
     "exam": "SC-900",
     "number": 2,
+    "type": "single",
+    "sourceIds": ["S3"],
     "question": "合作夥伴使用自己組織的身分提供者登入你的應用程式，你的租用戶接受對方發出的權杖。這是什麼概念？",
     "options": [
       {
@@ -813,6 +849,8 @@
     "id": "sc900-003",
     "exam": "SC-900",
     "number": 3,
+    "type": "single",
+    "sourceIds": ["C2"],
     "question": "安全原則要求每次存取都依使用者、裝置、位置與風險重新評估。這最符合哪個 Zero Trust 原則？",
     "options": [
       {
@@ -843,6 +881,8 @@
     "id": "sc900-004",
     "exam": "SC-900",
     "number": 4,
+    "type": "single",
+    "sourceIds": ["S3"],
     "question": "系統要驗證下載檔案是否被竄改，但不需要還原原始內容。最適合使用哪個概念？",
     "options": [
       {
@@ -873,6 +913,8 @@
     "id": "sc900-005",
     "exam": "SC-900",
     "number": 5,
+    "type": "single",
+    "sourceIds": ["S3"],
     "question": "組織建立政策、辨識風險，並追蹤法規控制的落實證據。這整體屬於哪個概念？",
     "options": [
       {
@@ -903,6 +945,8 @@
     "id": "sc900-006",
     "exam": "SC-900",
     "number": 6,
+    "type": "single",
+    "sourceIds": ["S4"],
     "question": "Azure 自動化工作需要存取 Key Vault，而且不應在程式碼中保存密碼或憑證。應優先使用哪種身分？",
     "options": [
       {
@@ -933,6 +977,8 @@
     "id": "sc900-007",
     "exam": "SC-900",
     "number": 7,
+    "type": "single",
+    "sourceIds": ["S1"],
     "question": "組織部署可代表使用者存取企業資料的 AI 代理程式，需要每個代理程式都有最低權限與可稽核身分。應使用哪個概念？",
     "options": [
       {
@@ -963,6 +1009,8 @@
     "id": "sc900-008",
     "exam": "SC-900",
     "number": 8,
+    "type": "single",
+    "sourceIds": ["S4"],
     "question": "員工要用同一組企業身分存取內部部署應用程式與 Microsoft 365。這最符合哪個概念？",
     "options": [
       {
@@ -993,6 +1041,8 @@
     "id": "sc900-009",
     "exam": "SC-900",
     "number": 9,
+    "type": "single",
+    "sourceIds": ["S4"],
     "question": "哪個選項符合真正的多重要素驗證？",
     "options": [
       {
@@ -1023,6 +1073,8 @@
     "id": "sc900-010",
     "exam": "SC-900",
     "number": 10,
+    "type": "single",
+    "sourceIds": ["S4"],
     "question": "使用者忘記密碼，希望依組織原則自行驗證後重設，減少服務台工單。應使用哪項能力？",
     "options": [
       {
@@ -1053,6 +1105,8 @@
     "id": "sc900-011",
     "exam": "SC-900",
     "number": 11,
+    "type": "single",
+    "sourceIds": ["I2", "I5"],
     "question": "若使用者的登入風險為高，則封鎖存取；若為中，則要求 MFA。應使用哪項能力？",
     "options": [
       {
@@ -1083,6 +1137,8 @@
     "id": "sc900-012",
     "exam": "SC-900",
     "number": 12,
+    "type": "single",
+    "sourceIds": ["S4"],
     "question": "要讓某人管理 Microsoft Entra 使用者與群組，但不授予 Azure VM 管理權限。應使用哪種角色？",
     "options": [
       {
@@ -1113,6 +1169,8 @@
     "id": "sc900-013",
     "exam": "SC-900",
     "number": 13,
+    "type": "single",
+    "sourceIds": ["I4"],
     "question": "每季要求應用程式擁有者確認外部來賓是否仍需存取。應使用哪項能力？",
     "options": [
       {
@@ -1143,6 +1201,8 @@
     "id": "sc900-014",
     "exam": "SC-900",
     "number": 14,
+    "type": "single",
+    "sourceIds": ["I3"],
     "question": "管理員平時不應持有 Global Administrator 權限，但需要時可在通過 MFA 與核准後啟用一小時。應使用哪項能力？",
     "options": [
       {
@@ -1173,6 +1233,8 @@
     "id": "sc900-015",
     "exam": "SC-900",
     "number": 15,
+    "type": "single",
+    "sourceIds": ["I5"],
     "question": "安全團隊要偵測 leaked credentials、password spray 與 risky sign-ins，並把風險帶入條件式存取。應使用哪項能力？",
     "options": [
       {
@@ -1203,6 +1265,8 @@
     "id": "sc900-016",
     "exam": "SC-900",
     "number": 16,
+    "type": "single",
+    "sourceIds": ["S5"],
     "question": "公開 Web 應用程式要防範 SQL injection 與跨網站指令碼。應優先使用哪項服務？",
     "options": [
       {
@@ -1233,6 +1297,8 @@
     "id": "sc900-017",
     "exam": "SC-900",
     "number": 17,
+    "type": "single",
+    "sourceIds": ["S5"],
     "question": "管理員要從 Azure portal 安全連線到 VM，且 VM 不應暴露公用 RDP 或 SSH。應使用哪項服務？",
     "options": [
       {
@@ -1263,6 +1329,8 @@
     "id": "sc900-018",
     "exam": "SC-900",
     "number": 18,
+    "type": "single",
+    "sourceIds": ["S5"],
     "question": "應用程式需要安全保存 API 金鑰、TLS 憑證與加密金鑰。應使用哪項服務？",
     "options": [
       {
@@ -1293,6 +1361,8 @@
     "id": "sc900-019",
     "exam": "SC-900",
     "number": 19,
+    "type": "single",
+    "sourceIds": ["D1"],
     "question": "安全團隊要持續找出錯誤設定、改善 Secure Score，並對 VM 與容器提供威脅防護。應使用哪項服務？",
     "options": [
       {
@@ -1323,6 +1393,8 @@
     "id": "sc900-020",
     "exam": "SC-900",
     "number": 20,
+    "type": "single",
+    "sourceIds": ["D2"],
     "question": "SOC 要收集 Microsoft、內部部署與第三方安全事件，建立分析規則，並以 Playbook 自動開立工單。應使用哪項服務？",
     "options": [
       {
@@ -1353,6 +1425,8 @@
     "id": "sc900-021",
     "exam": "SC-900",
     "number": 21,
+    "type": "single",
+    "sourceIds": ["D3"],
     "question": "哪個 Defender 產品主要保護電子郵件、惡意連結、附件與協作工具？",
     "options": [
       {
@@ -1383,6 +1457,8 @@
     "id": "sc900-022",
     "exam": "SC-900",
     "number": 22,
+    "type": "single",
+    "sourceIds": ["D3"],
     "question": "要利用內部部署 Active Directory 訊號偵測 Pass-the-Hash、橫向移動與遭入侵身分。應使用哪項產品？",
     "options": [
       {
@@ -1413,6 +1489,8 @@
     "id": "sc900-023",
     "exam": "SC-900",
     "number": 23,
+    "type": "single",
+    "sourceIds": ["P2"],
     "question": "合規團隊要追蹤改善動作、指派負責人、保存證據並查看量化進度。應使用哪項能力？",
     "options": [
       {
@@ -1443,26 +1521,28 @@
     "id": "sc900-024",
     "exam": "SC-900",
     "number": 24,
+    "type": "multiple",
+    "sourceIds": ["P1"],
     "question": "組織要對機密文件套用「機密」標示與加密，並在使用者嘗試寄到私人信箱時阻擋。應搭配哪兩項能力？",
     "options": [
       {
         "id": "A",
-        "text": "Service Health 與 Advisor"
+        "text": "Sensitivity labels"
       },
       {
         "id": "B",
-        "text": "PIM 與 Bastion"
+        "text": "DLP"
       },
       {
         "id": "C",
-        "text": "Azure Policy 與 ExpressRoute"
+        "text": "PIM"
       },
       {
         "id": "D",
-        "text": "Sensitivity labels 與 DLP"
+        "text": "Service Health"
       }
     ],
-    "answer": "D",
+    "answer": ["A", "B"],
     "explanation": "敏感度標籤負責分類與保護；DLP 依內容與情境警告或阻擋不當外洩。",
     "trap": "標籤本身不一定涵蓋所有外流情境，DLP 負責動作控制。",
     "domain": "Microsoft 合規性解決方案",
@@ -1473,6 +1553,8 @@
     "id": "sc900-025",
     "exam": "SC-900",
     "number": 25,
+    "type": "single",
+    "sourceIds": ["P1"],
     "question": "法律部門要保全相關信件、搜尋案件內容、檢閱並匯出；同時稽核誰曾大量下載檔案。應分別使用哪兩項能力？",
     "options": [
       {

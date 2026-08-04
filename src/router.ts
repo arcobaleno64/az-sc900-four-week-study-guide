@@ -1,5 +1,6 @@
 import { reactive } from "vue";
 import type { RouteName } from "./types";
+import { decodeRouteParam } from "./utils";
 export const route = reactive<{
   name: RouteName;
   param: string;
@@ -23,7 +24,7 @@ function parse() {
   route.name = names.has(candidate as RouteName)
     ? (candidate as RouteName)
     : "dashboard";
-  route.param = decodeURIComponent(param);
+  route.param = decodeRouteParam(param);
   route.query = Object.fromEntries(new URLSearchParams(search));
 }
 export function navigate(

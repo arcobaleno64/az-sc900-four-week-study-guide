@@ -28,7 +28,9 @@ watch(
   <section class="page-stack">
     <div class="page-intro">
       <div>
-        <span class="badge badge--accent">28 項 Microsoft Learn</span>
+        <span class="badge badge--accent"
+          >{{ sources.length }} 項 Microsoft Learn</span
+        >
         <h2>官方來源</h2>
         <p>
           考綱、認證頁與產品文件集中於此。正式預約前仍應核對官方頁面，因為雲端產品更名的速度偶爾比人的筆記快。

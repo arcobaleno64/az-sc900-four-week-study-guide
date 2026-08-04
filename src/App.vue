@@ -21,6 +21,7 @@ import SettingsView from "./views/SettingsView.vue";
 import SearchOverlay from "./components/SearchOverlay.vue";
 import ToastHost from "./components/ToastHost.vue";
 import { showToast } from "./toast";
+import { examMeta } from "./content";
 import type { RouteName } from "./types";
 
 const mobileOpen = ref(false);
@@ -45,7 +46,9 @@ const themeLabels: Record<string, string> = {
   light: "淺色",
   dark: "深色",
 };
-const themeLabel = computed(() => themeLabels[progress.theme] ?? progress.theme);
+const themeLabel = computed(
+  () => themeLabels[progress.theme] ?? progress.theme,
+);
 const nav = [
   { name: "dashboard" as RouteName, label: "總覽", icon: "總" },
   { name: "plan" as RouteName, label: "四週計畫", icon: "週" },
@@ -142,7 +145,7 @@ onBeforeUnmount(() => {
           ></span
           >{{ online ? "已連線" : "離線模式" }}
         </div>
-        <small>資料基準：2026-07-14</small>
+        <small>資料基準：{{ examMeta.lastVerified }}</small>
       </footer>
     </aside>
     <button
