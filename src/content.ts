@@ -7,7 +7,6 @@ import faqData from "../data/faq.json";
 import qaData from "../data/qa.json";
 import reviewData from "../data/review.json";
 import metaData from "../data/exam-meta.json";
-import summaryData from "../data/content-summary.json";
 import startHere from "../content/chapters/start-here.md?raw";
 import az900 from "../content/chapters/az-900.md?raw";
 import sc900 from "../content/chapters/sc-900.md?raw";
@@ -54,8 +53,14 @@ export const examMeta = metaData as {
   disclaimer: string;
   exams: ExamMeta[];
 };
+/**
+ * 全書收錄量。一律由資料本身算出 —— 手動維護的鏡像檔只會製造
+ * 「數字對不上」這一整類的問題，而那個問題本來不需要存在。
+ */
 export const summary = {
-  ...summaryData,
+  studyDays: studyDays.length,
+  glossaryTerms: terms.length,
+  officialSources: sources.length,
   questions: questions.length,
   azQuestions: questions.filter((q) => q.exam === "AZ-900").length,
   scQuestions: questions.filter((q) => q.exam === "SC-900").length,

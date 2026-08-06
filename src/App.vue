@@ -28,7 +28,6 @@ import type { RouteName } from "./types";
 
 const mobileOpen = ref(false);
 const searchOpen = ref(false);
-const online = ref(navigator.onLine);
 const installPrompt = ref<Event | null>(null);
 const views: Record<RouteName, Component> = {
   dashboard: DashboardView,
@@ -70,9 +69,6 @@ function onKey(event: KeyboardEvent) {
     mobileOpen.value = false;
   }
 }
-function updateOnline() {
-  online.value = navigator.onLine;
-}
 function captureInstall(event: Event) {
   event.preventDefault();
   installPrompt.value = event;
@@ -90,8 +86,6 @@ async function install() {
 }
 onMounted(() => {
   window.addEventListener("keydown", onKey);
-  window.addEventListener("online", updateOnline);
-  window.addEventListener("offline", updateOnline);
   window.addEventListener(
     "beforeinstallprompt",
     captureInstall as EventListener,
@@ -99,8 +93,6 @@ onMounted(() => {
 });
 onBeforeUnmount(() => {
   window.removeEventListener("keydown", onKey);
-  window.removeEventListener("online", updateOnline);
-  window.removeEventListener("offline", updateOnline);
   window.removeEventListener(
     "beforeinstallprompt",
     captureInstall as EventListener,
@@ -131,24 +123,38 @@ onBeforeUnmount(() => {
             :aria-current="route.name === item.name ? 'page' : undefined"
             @click="navigate(item.name)"
           >
-            <span
-              v-if="item.mark"
-              class="nav-item__icon readout"
-              aria-hidden="true"
-              >{{ item.mark }}</span
-            ><span v-else class="nav-item__icon nav-item__icon--blank"></span
+            <span class="nav-item__icon readout" aria-hidden="true">{{
+              item.mark
+            }}</span
             ><span>{{ item.label }}</span>
           </button>
         </template>
       </nav>
       <footer class="sidebar-footer">
-        <div class="status-line">
-          <span
-            class="status-dot"
-            :class="{ 'status-dot--offline': !online }"
-          ></span
-          >{{ online ? "已連線" : "離線模式" }}
-        </div>
+        <button
+          class="nav-item"
+          :class="{ 'nav-item--active': route.name === 'settings' }"
+          :aria-current="route.name === 'settings' ? 'page' : undefined"
+          @click="navigate('settings')"
+        >
+          <span class="nav-item__icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
+              />
+            </svg> </span
+          ><span>設定</span>
+        </button>
         <small>資料基準：{{ examMeta.lastVerified }}</small>
       </footer>
     </aside>

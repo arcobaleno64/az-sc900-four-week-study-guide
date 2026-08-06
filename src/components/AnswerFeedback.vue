@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { sources } from "../content";
+import { sources, terms } from "../content";
+import { navigate } from "../router";
 import {
   answerText,
   correctAnswerOf,
@@ -22,6 +23,21 @@ const questionSources = computed(() => {
   const ids = new Set(props.question.sourceIds);
   return sources.filter((source) => ids.has(source.id));
 });
+
+const glossaryByTerm = new Map(
+  terms.map((term) => [term.term.trim(), term] as const),
+);
+
+/**
+ * 本題關鍵字對應到的名詞條目。
+ * 解析講的是「這題為什麼選它」，名詞庫講的是「這個詞是什麼」——
+ * 兩者連起來，解析才從一段說明變成帶註腳的正文。
+ */
+const relatedTerms = computed(() =>
+  props.question.keywords
+    .map((keyword) => glossaryByTerm.get(keyword.trim()))
+    .filter((term): term is NonNullable<typeof term> => Boolean(term)),
+);
 
 /**
  * 逐選項理由。這是本題庫反盲猜的核心：干擾選項為何不選，
@@ -102,6 +118,19 @@ const rationales = computed(() => {
   <div class="trap-note">
     <strong>常見陷阱</strong>
     <p>{{ question.trap }}</p>
+  </div>
+  <div v-if="relatedTerms.length" class="answer-explanation">
+    <strong>相關名詞</strong>
+    <p class="cross-refs">
+      <button
+        v-for="term in relatedTerms"
+        :key="term.id"
+        class="cross-ref"
+        @click="navigate('glossary', term.id)"
+      >
+        {{ term.term }}
+      </button>
+    </p>
   </div>
   <div class="answer-explanation">
     <strong>官方來源</strong>

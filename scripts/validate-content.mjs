@@ -21,8 +21,7 @@ const plan = read("data/study-plan.json"),
   faq = read("data/faq.json"),
   qa = read("data/qa.json"),
   r = read("data/review.json"),
-  m = read("data/exam-meta.json"),
-  sum = read("data/content-summary.json");
+  m = read("data/exam-meta.json");
 const days = plan.weeks.flatMap((w) => w.days),
   terms = g.categories.flatMap((c) => c.terms),
   examCodes = m.exams.map((x) => x.code),
@@ -317,9 +316,14 @@ for (const exam of m.exams) {
     );
   }
 }
-ok(terms.length === 175, "名詞庫必須有 １７５ 個詞。");
+// 下限而非定值：有意增刪名詞不該動到驗證器，但整批消失（壞掉的合併、
+// 被截斷的寫入）必須擋下來。
+ok(terms.length >= 150, `名詞庫只剩 ${terms.length} 個詞，疑似資料遺失。`);
 ok(uniq(terms.map((x) => x.id)), "名詞 ID 重複。");
-ok(s.length > 0 && uniq(s.map((x) => x.id)), "官方來源不得為空或 ID 重複。");
+ok(
+  s.length >= 25 && uniq(s.map((x) => x.id)),
+  `官方來源只剩 ${s.length} 項，疑似資料遺失，或 ID 重複。`,
+);
 ok(
   s.every(
     (x) =>
@@ -344,12 +348,6 @@ ok(
 ok(
   m.exams.some((x) => x.code === "SC-900" && x.effectiveDate === "2026-07-28"),
   "SC-900 版本不符。",
-);
-ok(
-  sum.studyDays === days.length &&
-    sum.glossaryTerms === terms.length &&
-    sum.officialSources === s.length,
-  "內容摘要不一致。",
 );
 for (const f of ["start-here.md", "az-900.md", "sc-900.md", "cross-exam.md"])
   ok(statSync(join(root, "content/chapters", f)).size > 500, `${f} 過短。`);

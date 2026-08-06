@@ -39,7 +39,6 @@ export const bookParts: BookPart[] = [
       { name: "faq", label: "FAQ／Q&A", mark: "B" },
       { name: "sources", label: "官方來源", mark: "C" },
       { name: "bookIndex", label: "索引", mark: "D" },
-      { name: "settings", label: "設定", mark: "" },
     ],
   },
 ];
@@ -69,6 +68,5 @@ export function markLabel(name: RouteName): string {
   const entry = byName.get(name);
   const part = partOf.get(name);
   if (!entry || !part) return "";
-  if (!entry.mark) return part;
   return part === "前言" ? part : `${part} ${entry.mark}`;
 }

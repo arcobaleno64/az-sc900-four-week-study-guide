@@ -41,9 +41,9 @@
   --warning-soft: #ece4cf;
   --danger: #b4341c;
   --danger-soft: #f2ddd8;
-  /* 儀器面板沒有投影，只有刻線。保留變數名以免既有規則失效。 */
-  --shadow: none;
-  --shadow-lg: 0 12px 40px rgba(19, 26, 23, 0.22);
+  /* 儀器面板沒有投影，只有刻線。唯一的陰影留給真正浮在內容之上的東西：
+     對話框、搜尋、toast、手機抽屜。 */
+  --lift: 0 12px 40px rgba(19, 26, 23, 0.22);
   --radius: 3px;
   --sidebar: 264px;
   --topbar: 78px;
@@ -71,8 +71,7 @@
   --warning-soft: #2c2618;
   --danger: #e5765c;
   --danger-soft: #2e1c18;
-  --shadow: none;
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --lift: 0 12px 40px rgba(0, 0, 0, 0.55);
   --tick: rgba(232, 236, 232, 0.26);
 }
 * {
@@ -226,10 +225,23 @@ body {
   margin-bottom: 1rem;
 }
 
-/* 沒有部次編號的項目（設定）留白對齊，不畫空框。 */
-.nav-item__icon--blank {
-  border-color: transparent;
-  background: none;
+/* 解析裡指回名詞庫的交互參照，像正文裡的註腳號。 */
+.cross-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+}
+.cross-ref {
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--soft);
+  padding: 0.16rem 0.5rem;
+  font-size: 0.82rem;
+}
+.cross-ref:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 /* 側欄的部次標題：前言／正文／附錄。 */
@@ -586,27 +598,11 @@ a:focus-visible {
 }
 .sidebar-footer {
   display: grid;
-  gap: 0.55rem;
-  padding: 0.9rem 1rem 1.1rem;
+  gap: 0.4rem;
+  padding: 0.6rem 0.5rem 1rem;
   border-top: 1px solid var(--line);
   color: var(--faint);
   font-size: 0.78rem;
-}
-.status-line {
-  display: flex;
-  align-items: center;
-  gap: 0.46rem;
-}
-.status-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 0 4px var(--success-soft);
-}
-.status-dot--offline {
-  background: var(--warning);
-  box-shadow: 0 0 0 4px var(--warning-soft);
 }
 .app-main {
   min-height: 100vh;
@@ -654,7 +650,6 @@ a:focus-visible {
   border-radius: 2px;
   background: var(--surface);
   color: var(--text);
-  box-shadow: var(--shadow);
   font-size: 1.15rem;
 }
 .icon-button:hover {
@@ -677,7 +672,6 @@ a:focus-visible {
   background: var(--surface);
   color: var(--soft);
   padding: 0.48rem 0.65rem 0.48rem 0.85rem;
-  box-shadow: var(--shadow);
 }
 kbd {
   display: inline-flex;
@@ -905,7 +899,6 @@ kbd {
   border-top-width: 3px;
   background: var(--surface);
   padding: clamp(1.3rem, 3.5vw, 2.6rem);
-  box-shadow: var(--shadow-lg);
 }
 .hero-card__content {
   max-width: 890px;
@@ -972,7 +965,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 1rem;
-  box-shadow: var(--shadow);
 }
 .stat-card > span,
 .stat-card small {
@@ -1097,7 +1089,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.9rem;
-  box-shadow: var(--shadow);
 }
 .compact-progress strong,
 .compact-progress span {
@@ -1128,7 +1119,6 @@ kbd {
   background: var(--surface);
   color: var(--soft);
   padding: 0.55rem 0.8rem;
-  box-shadow: var(--shadow);
 }
 .week-tabs > button:hover,
 .document-tabs > button:hover,
@@ -1179,7 +1169,6 @@ kbd {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: var(--shadow);
 }
 .day-card[data-completed="true"] {
   border-color: color-mix(in srgb, var(--success) 45%, var(--line));
@@ -1267,7 +1256,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.85rem 1rem;
-  box-shadow: var(--shadow);
 }
 .version-card > span {
   color: var(--primary);
@@ -1428,7 +1416,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 1rem;
-  box-shadow: var(--shadow);
 }
 .term-card[data-familiar="true"] {
   border-color: color-mix(in srgb, var(--success) 45%, var(--line));
@@ -1481,7 +1468,7 @@ kbd {
   border-radius: 2px;
   background: var(--surface);
   padding: clamp(1rem, 3vw, 1.7rem);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--lift);
 }
 .flashcard-face {
   display: grid;
@@ -1513,7 +1500,6 @@ kbd {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: var(--shadow);
 }
 .faq-item > button {
   display: grid;
@@ -1592,7 +1578,6 @@ kbd {
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   padding: 0.72rem 0.9rem;
-  box-shadow: var(--shadow);
   backdrop-filter: blur(14px);
 }
 /* 儀器上緣的狀態列：模式、考科、領域一列讀完，中間以刻線分隔。 */
@@ -2091,7 +2076,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.9rem;
-  box-shadow: var(--shadow);
 }
 .source-id {
   display: inline-grid;
@@ -2181,7 +2165,7 @@ kbd {
   border-radius: 2px;
   background: var(--surface);
   padding: 1rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--lift);
 }
 .search-dialog__header {
   display: flex;
@@ -2247,7 +2231,7 @@ kbd {
   border-radius: 2px;
   background: var(--surface);
   padding: 0.72rem 0.85rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--lift);
 }
 .toast[data-tone="success"] {
   border-left-color: var(--success);
@@ -2275,7 +2259,7 @@ kbd {
   }
   .sidebar {
     transform: translateX(-103%);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--lift);
   }
   .sidebar--open {
     transform: none;
