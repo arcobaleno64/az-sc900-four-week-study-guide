@@ -1905,6 +1905,16 @@ kbd {
   display: grid;
   gap: 0.6rem;
 }
+/* 重複情境題組的規則說明：它改變了整組的作答方式，不是補充。 */
+.case-rule {
+  border-top: 1px solid var(--line2);
+  padding-top: 0.6rem;
+  color: var(--text) !important;
+  font-size: 0.86rem;
+}
+.case-panel[data-kind="solution-set"] {
+  border-color: var(--text);
+}
 .case-requirements {
   display: grid;
   gap: 0.3rem;

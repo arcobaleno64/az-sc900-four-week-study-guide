@@ -100,9 +100,17 @@ export type Question =
 /** 有固定選項清單、可直接洗牌的題型。 */
 export type OptionQuestion =
   SingleQuestion | MultipleQuestion | TrueFalseQuestion;
+/**
+ * `scenario` 是共用背景的情境案例組。
+ * `solution-set` 是 Microsoft 最具代表性的重複情境題組：同一個目標下，
+ * 每題提出**不同的解法**並各自獨立計分——可能多個成立，也可能都不成立。
+ * 它比是非矩陣難，因為你看不到其他解法可以互相對照。
+ */
+export type CaseKind = "scenario" | "solution-set";
 export interface CaseStudy {
   id: string;
   exam: ExamCode;
+  kind?: CaseKind;
   title: string;
   scenario: string;
   requirements: string[];

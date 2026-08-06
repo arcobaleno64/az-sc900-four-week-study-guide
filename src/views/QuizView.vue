@@ -533,6 +533,7 @@ onBeforeUnmount(stopTimer);
             :options="active.options"
             :answer="selected"
             :revealed="mode === '練習模式' && activeRevealed"
+            :solution-set="activeCase?.kind === 'solution-set'"
             @answer="setAnswer"
           />
 

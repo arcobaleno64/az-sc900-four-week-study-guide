@@ -273,12 +273,28 @@ for (const item of cases) {
       item.sourceIds.every((id) => sourceIds.has(id)),
     `案例 ${item.id} 的來源不存在。`,
   );
+  ok(
+    item.kind === undefined || ["scenario", "solution-set"].includes(item.kind),
+    `案例 ${item.id} 的 kind 只能是 scenario 或 solution-set。`,
+  );
   const members = q.filter((x) => x.caseId === item.id);
   ok(members.length >= 3, `案例 ${item.id} 至少需要 ３ 題。`);
   ok(
     members.every((x) => x.exam === item.exam),
     `案例 ${item.id} 的題目考科與案例不一致。`,
   );
+  // 重複情境題組的每一題都是「這個解法成不成立」，只能是是非題；
+  // 少於三個解法就撐不起「可能多個成立、也可能都不成立」的判斷。
+  if (item.kind === "solution-set") {
+    ok(
+      members.length >= 3 && members.every((x) => x.type === "true-false"),
+      `案例 ${item.id} 是重複情境題組，需要至少 ３ 題且全部為是非題。`,
+    );
+    ok(
+      new Set(members.map((x) => x.answer)).size > 1,
+      `案例 ${item.id} 的解法不得全部成立或全部不成立，否則第一題就洩了答案。`,
+    );
+  }
   // 抽題時以案例組第一題的領域代表整組配額，跨領域案例會讓權重配額失準。
   ok(
     new Set(members.map((x) => x.domain)).size <= 1,

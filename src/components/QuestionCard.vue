@@ -20,6 +20,8 @@ const props = defineProps<{
   answer: QuestionAnswer | undefined;
   /** 練習模式作答後為 true，用來標出正解與誤選。 */
   revealed: boolean;
+  /** 屬於重複情境題組時，是非題問的是「這個解法成不成立」而不是「敘述對不對」。 */
+  solutionSet?: boolean;
 }>();
 const emit = defineEmits<{ (event: "answer", value: QuestionAnswer): void }>();
 
@@ -77,7 +79,11 @@ const segmentOf = (id: string) =>
     複選題：請選出所有正確答案。
   </p>
   <p v-else-if="question.type === 'true-false'" class="muted">
-    是非題：判斷敘述是否正確。
+    {{
+      solutionSet
+        ? "此解法是否達成上述目標？只判斷這一個解法，與同組其他題無關。"
+        : "是非題：判斷敘述是否正確。"
+    }}
   </p>
   <p v-else-if="question.type === 'yes-no-matrix'" class="muted">
     是非矩陣：每條陳述各自判斷，全部答對才算此題正確。
@@ -194,7 +200,13 @@ const segmentOf = (id: string) =>
       @click="chooseOption(option.id)"
     >
       <span class="option-key">{{ index + 1 }}</span
-      ><span>{{ option.text }}</span>
+      ><span>{{
+        solutionSet && question.type === "true-false"
+          ? option.id === "true"
+            ? "達成目標"
+            : "未達成目標"
+          : option.text
+      }}</span>
     </button>
   </div>
 </template>
