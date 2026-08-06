@@ -161,3 +161,36 @@ test("錨點與標題一一對應，供目錄跳轉使用", () => {
   assert.equal(headingAnchor("第 1 章　雲端概念"), "第-1-章-雲端概念");
   assert.equal(headingAnchor("1.1　一句話定位"), "1-1-一句話定位");
 });
+
+test("每個索引錨點都對得到真實教材渲染後的 DOM id", async () => {
+  // 索引送出 ?h=<anchor>，KnowledgeView 用 getElementById 找它。
+  // 兩邊各自從原文推導，一旦推導方式分岔就會靜靜地捲不到任何地方 ——
+  // 沒有錯誤訊息、沒有紅燈，只是點了沒反應。這裡把那個契約釘住。
+  const { marked, Renderer } = await import("marked");
+  const { readFileSync } = await import("node:fs");
+  const files = [
+    ["start-here", 1],
+    ["az-900", 2],
+    ["sc-900", 3],
+    ["cross-exam", 4],
+  ] as const;
+
+  for (const [id, number] of files) {
+    const raw = readFileSync(`content/chapters/${id}.md`, "utf8");
+    // 重現 KnowledgeView 產生 id 的路徑。
+    const domIds = new Set<string>();
+    String(marked.parse(raw, { renderer: new Renderer() })).replace(
+      /<h([123])>(.*?)<\/h\1>/g,
+      (_, _level, text: string) => {
+        domIds.add(headingAnchor(String(text).replace(/<[^>]+>/g, "")));
+        return "";
+      },
+    );
+    for (const section of sectionsOf({ id, number, title: id, raw })) {
+      assert.ok(
+        domIds.has(section.anchor),
+        `${id} 的「${section.title}」錨點 ${section.anchor} 在渲染結果中不存在`,
+      );
+    }
+  }
+});

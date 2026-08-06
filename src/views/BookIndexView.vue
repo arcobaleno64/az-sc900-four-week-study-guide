@@ -83,7 +83,11 @@ const totals = computed(() => ({
                 :key="section.label + section.anchor"
                 class="index-ref"
                 :title="section.title"
-                @click="navigate('knowledge', section.chapterId)"
+                @click="
+                  navigate('knowledge', section.chapterId, {
+                    h: section.anchor,
+                  })
+                "
               >
                 <span v-if="section.label" class="readout"
                   >§{{ section.label }}</span

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { marked, Renderer } from "marked";
 import { chapters, examMeta } from "../content";
 import { navigate, route } from "../router";
@@ -107,6 +107,22 @@ watch(
     if (chapters.some((c) => c.id === id)) activeId.value = id;
   },
 );
+/**
+ * 從索引點進來時帶著 `?h=<錨點>`，直接捲到那一節。
+ * 索引的承諾是「指回這個詞出現的節」，只切到章節開頭等於沒兌現。
+ *
+ * 監看 query 物件本身而非 `query.h`：router 每次 parse 都會換上新物件，
+ * 所以重複點同一條索引也會再捲一次。
+ */
+watch(
+  () => route.query,
+  (query) => {
+    if (query.h) jump(query.h);
+  },
+);
+onMounted(() => {
+  if (route.query.h) jump(route.query.h);
+});
 </script>
 <template>
   <section class="page-stack">
