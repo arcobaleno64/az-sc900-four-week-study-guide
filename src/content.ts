@@ -1,17 +1,18 @@
 import planData from "../data/study-plan.json";
 import questionData from "../data/questions.json";
+import caseStudyData from "../data/case-studies.json";
 import glossaryData from "../data/glossary.json";
 import sourcesData from "../data/sources.json";
 import faqData from "../data/faq.json";
 import qaData from "../data/qa.json";
 import reviewData from "../data/review.json";
 import metaData from "../data/exam-meta.json";
-import summaryData from "../data/content-summary.json";
 import startHere from "../content/chapters/start-here.md?raw";
 import az900 from "../content/chapters/az-900.md?raw";
 import sc900 from "../content/chapters/sc-900.md?raw";
 import crossExam from "../content/chapters/cross-exam.md?raw";
 import type {
+  CaseStudy,
   ExamMeta,
   FaqItem,
   GlossaryTerm,
@@ -22,13 +23,18 @@ import type {
   StudyWeek,
 } from "./types";
 import { normalize } from "./utils";
+import { buildIndex } from "./book-index";
 export const studyPlan = planData as {
   version: string;
   weeks: StudyWeek[];
   wrongAnswerMethod: { type: string; symptom: string; remedy: string }[];
 };
 export const studyDays = studyPlan.weeks.flatMap((w) => w.days) as StudyDay[];
-export const questions = questionData as Question[];
+export const questions = questionData as unknown as Question[];
+export const caseStudies = caseStudyData as unknown as CaseStudy[];
+export const caseStudyById = new Map(
+  caseStudies.map((item) => [item.id, item]),
+);
 export const glossary = glossaryData as {
   version: string;
   categories: { id: string; title: string; terms: GlossaryTerm[] }[];
@@ -47,23 +53,60 @@ export const examMeta = metaData as {
   disclaimer: string;
   exams: ExamMeta[];
 };
+/**
+ * 全書收錄量。一律由資料本身算出 —— 手動維護的鏡像檔只會製造
+ * 「數字對不上」這一整類的問題，而那個問題本來不需要存在。
+ */
 export const summary = {
-  ...summaryData,
+  studyDays: studyDays.length,
+  glossaryTerms: terms.length,
+  officialSources: sources.length,
   questions: questions.length,
   azQuestions: questions.filter((q) => q.exam === "AZ-900").length,
   scQuestions: questions.filter((q) => q.exam === "SC-900").length,
 };
+/** `number` 是必備知識裡的章次，節號 §2.3 由它推導。 */
 export const chapters = [
-  { id: "start-here", title: "開始使用", exam: "共同", raw: startHere },
-  { id: "az-900", title: "AZ-900 必備知識", exam: "AZ-900", raw: az900 },
-  { id: "sc-900", title: "SC-900 必備知識", exam: "SC-900", raw: sc900 },
+  {
+    id: "start-here",
+    number: 1,
+    title: "開始使用",
+    exam: "共同",
+    raw: startHere,
+  },
+  {
+    id: "az-900",
+    number: 2,
+    title: "AZ-900 必備知識",
+    exam: "AZ-900",
+    raw: az900,
+  },
+  {
+    id: "sc-900",
+    number: 3,
+    title: "SC-900 必備知識",
+    exam: "SC-900",
+    raw: sc900,
+  },
   {
     id: "cross-exam",
+    number: 4,
     title: "雙科比較與易混淆辨析",
     exam: "共同",
     raw: crossExam,
   },
 ] as const;
+export const bookIndexEntries = buildIndex(
+  chapters.map((chapter) => ({
+    id: chapter.id,
+    title: chapter.title,
+    number: chapter.number,
+    raw: chapter.raw,
+  })),
+  terms,
+  questions,
+);
+
 export function searchContent(query: string): SearchResult[] {
   const q = normalize(query.trim());
   if (!q) return [];

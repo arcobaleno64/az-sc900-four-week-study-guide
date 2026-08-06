@@ -1,58 +1,78 @@
+/*
+ * 考場儀表（instrument face）
+ *
+ * 這個網站量測的是一件很具體的事：你離官方考綱的門檻還有多遠。
+ * 所以視覺語言取自量測儀器而非教育軟體 —— 琺瑯面板、刻劃的刻度、
+ * 等寬讀數，以及一條紅線。
+ *
+ * 色相刻意只留兩個彩色事件：
+ *   redline（氧化紅）= 門檻、答錯、危險
+ *   verified（儀表綠）= 正解、已完成
+ * 其餘全是琺瑯灰與墨綠黑。友善的多彩配色會削弱這個產品真正想講的話 ——
+ * 「你的 70 分裡藏了六題是猜對的」。克制本身就是論點。
+ */
 :root {
   --font:
     "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui,
     -apple-system, "Segoe UI", sans-serif;
-  --bg: #f3f7f6;
-  --surface: #fff;
-  --alt: #edf4f2;
-  --strong: #dceae6;
-  --text: #18302f;
-  --soft: #516967;
-  --faint: #718684;
-  --line: #d5e2df;
-  --line2: #b9cfca;
-  --primary: #0f5f62;
-  --primary2: #0a4648;
-  --primary-soft: #dceeee;
-  --accent: #df7c36;
-  --accent-soft: #fff0e4;
-  --success: #26734d;
-  --success-soft: #e4f4eb;
-  --warning: #9b6118;
-  --warning-soft: #fff3d8;
-  --danger: #a43c3c;
-  --danger-soft: #fdeaea;
-  --shadow: 0 1px 2px rgba(14, 44, 43, 0.07), 0 6px 18px rgba(14, 44, 43, 0.04);
-  --shadow-lg: 0 18px 55px rgba(10, 45, 45, 0.16);
-  --radius: 16px;
+  /* 讀數層：所有拉丁文與數字。tabular-nums 讓數字跳動時不位移。 */
+  --font-readout:
+    ui-monospace, "Cascadia Mono", "SF Mono", "Segoe UI Mono", "Roboto Mono",
+    "Noto Sans Mono", monospace;
+
+  --bg: #e4e7e2;
+  --surface: #f4f5f2;
+  --alt: #ebede8;
+  --strong: #dadfd8;
+  --text: #131a17;
+  --soft: #4c5651;
+  --faint: #646e68;
+  --line: #c3cac4;
+  --line2: #79837c;
+  --primary: #1f4d42;
+  --primary2: #123028;
+  --primary-soft: #dbe4de;
+  /* 結構強調沿用油墨家族，不再是第三個色相。 */
+  --accent: #1f4d42;
+  --accent-soft: #dbe4de;
+  --success: #1f5d3f;
+  --success-soft: #dde8e0;
+  --warning: #7d5a12;
+  --warning-soft: #ece4cf;
+  --danger: #b4341c;
+  --danger-soft: #f2ddd8;
+  /* 儀器面板沒有投影，只有刻線。唯一的陰影留給真正浮在內容之上的東西：
+     對話框、搜尋、toast、手機抽屜。 */
+  --lift: 0 12px 40px rgba(19, 26, 23, 0.22);
+  --radius: 3px;
   --sidebar: 264px;
   --topbar: 78px;
-  --focus: 0 0 0 3px rgba(15, 95, 98, 0.24);
+  --tick: rgba(19, 26, 23, 0.24);
 }
 :root[data-theme="dark"] {
-  --bg: #0c1516;
-  --surface: #142123;
-  --alt: #192a2b;
-  --strong: #243a3a;
-  --text: #ecf6f4;
-  --soft: #b7c9c6;
-  --faint: #8ba3a0;
-  --line: #2d4141;
-  --line2: #3c5655;
-  --primary: #72c7c8;
-  --primary2: #9bdbdc;
-  --primary-soft: #17383a;
-  --accent: #f1a76d;
-  --accent-soft: #3d2a1e;
-  --success: #74c99b;
-  --success-soft: #18362a;
-  --warning: #e4bc69;
-  --warning-soft: #3b311d;
-  --danger: #ef9191;
-  --danger-soft: #3b2325;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.22), 0 8px 22px rgba(0, 0, 0, 0.16);
-  --shadow-lg: 0 20px 58px rgba(0, 0, 0, 0.42);
-  --focus: 0 0 0 3px rgba(114, 199, 200, 0.27);
+  /* 夜間的同一台儀器：琺瑯壓暗，刻度不變。 */
+  --bg: #101513;
+  --surface: #19201d;
+  --alt: #151b19;
+  --strong: #242c28;
+  --text: #e8ece8;
+  --soft: #a8b2ac;
+  --faint: #7e8983;
+  --line: #2c3531;
+  --line2: #68736c;
+  --primary: #8fbfad;
+  --primary2: #b3d6c8;
+  --primary-soft: #1d2a25;
+  --accent: #8fbfad;
+  --accent-soft: #1d2a25;
+  --success: #7cc39b;
+  --success-soft: #16281f;
+  --warning: #d3b072;
+  --warning-soft: #2c2618;
+  --danger: #e5765c;
+  --danger-soft: #2e1c18;
+  --lift: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --tick: rgba(232, 236, 232, 0.26);
 }
 * {
   box-sizing: border-box;
@@ -66,24 +86,287 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 92% 4%,
-      rgba(223, 124, 54, 0.08),
-      transparent 26rem
-    ),
-    radial-gradient(
-      circle at 25% 105%,
-      rgba(15, 95, 98, 0.07),
-      transparent 32rem
-    ),
-    var(--bg);
+  /* 平的琺瑯面。儀器面板不打光暈。 */
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font);
   font-size: 16px;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * 讀數層。考試世界裡真正重要的東西全是拉丁文與數字：
+ * AZ-900、700、45:00、25%~30%、第 12／40 題。
+ * 它們一律用等寬、緊字距、tabular 的儀表讀數處理；中文留在安靜的內文層。
+ */
+.readout {
+  font-family: var(--font-readout);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.readout--label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.readout-unit {
+  margin-left: 0.12em;
+  font-size: 0.42em;
+  letter-spacing: 0;
+}
+.readout--xl {
+  display: block;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  font-weight: 700;
+  /* 讀數之間拉開，像儀表面板上分開刻的字符。 */
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+/*
+ * 招牌元件：刻度尺。
+ *
+ * 全站只有這一個裝飾性裝置，而且它從不裝飾 —— 每一道刻線都對應真實結構：
+ * 考綱權重的分界、700 的及格門檻、四週二十八天的日次。
+ * 同一個裝置在不同頁面量測不同的東西，這就是這個網站的識別。
+ */
+.scale {
+  display: grid;
+  gap: 0.4rem;
+}
+.scale__track {
+  position: relative;
+  display: flex;
+  height: 30px;
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(90deg, var(--tick) 0 1px, transparent 1px 12px),
+    var(--alt);
+  background-position: 0 100%;
+  background-size: 100% 7px;
+  background-repeat: repeat-x;
+  overflow: hidden;
+}
+/* 每一段的寬度＝該領域的官方權重，由 style 屬性帶入真實比例。 */
+.scale__band {
+  position: relative;
+  min-width: 0;
+  border-right: 1px solid var(--line2);
+}
+.scale__band:last-child {
+  border-right: 0;
+}
+.scale__band > span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  opacity: 0.82;
+}
+.scale__legend {
+  display: flex;
+  /* 領域名稱在窄螢幕會排不下，讓它換行而不是把版面撐破。 */
+  flex-wrap: wrap;
+  gap: 0.2rem 0.75rem;
+  font-size: 0.72rem;
+  color: var(--faint);
+}
+.scale__legend > span {
+  display: flex;
+  min-width: 0;
+  gap: 0.35rem;
+  align-items: baseline;
+}
+.scale__legend b {
+  overflow: hidden;
+  color: var(--soft);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 門檻尺：0～1000 的量尺，紅線刻在 700。 */
+.scale--threshold {
+  /* 留白給紅線下方的標籤。 */
+  padding-bottom: 1.15rem;
+}
+.scale--threshold .scale__track {
+  height: 44px;
+  background-size: 100% 11px;
+  overflow: visible;
+}
+/* 紅線的位置是絕對的 —— 門檻不會因為你考幾分而移動。 */
+.scale__mark {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  /* 85% 是本教材自訂的保守門檻，不是官方及格線。 */
+  left: 85%;
+  width: 2px;
+  background: var(--danger);
+}
+/* 標籤放在 DOM 裡而不是 CSS content —— 生成內容在輔助科技上不可靠。 */
+.scale__mark-label {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 50%;
+  color: var(--danger);
+  font-family: var(--font-readout);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.quiz-blueprint {
+  margin-bottom: 1rem;
+}
+
+/* 解析裡指回名詞庫的交互參照，像正文裡的註腳號。 */
+.cross-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+}
+.cross-ref {
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--soft);
+  padding: 0.16rem 0.5rem;
+  font-size: 0.82rem;
+}
+.cross-ref:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* 側欄的部次標題：前言／正文／附錄。 */
+.nav-part {
+  margin: 1.1rem 0 0.3rem;
+  padding: 0 0.9rem;
+  color: var(--faint);
+  font-family: var(--font-readout);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.primary-nav > .nav-part:first-child {
+  margin-top: 0.2rem;
+}
+
+/* 正文標題前的節號，與目錄、索引指的是同一組編號。 */
+.section-mark {
+  margin-right: 0.55rem;
+  color: var(--faint);
+  font-size: 0.72em;
+  font-weight: 600;
+}
+.knowledge-nav nav button .readout {
+  display: inline-block;
+  min-width: 2.6rem;
+  color: var(--faint);
+  font-size: 0.76rem;
+}
+.document-tabs strong .readout {
+  margin-right: 0.5rem;
+  color: var(--faint);
+}
+
+/* 版次頁 */
+.colophon-grid {
+  display: grid;
+  gap: 0.9rem 1.4rem;
+  margin: 0 0 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+.colophon-grid dt {
+  color: var(--faint);
+}
+.colophon-grid dd {
+  margin: 0.15rem 0 0;
+  color: var(--text);
+  font-size: 1.02rem;
+}
+.colophon-note {
+  border-top: 1px solid var(--line);
+  padding-top: 0.85rem;
+  color: var(--soft);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* 索引 */
+.index-group {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+}
+.index-group__mark {
+  margin: 0;
+  color: var(--faint);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+.index-list {
+  display: grid;
+  margin: 0;
+  gap: 0;
+}
+.index-list dt {
+  border-top: 1px solid var(--line);
+  padding-top: 0.6rem;
+  font-weight: 700;
+}
+.index-list dt:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.index-list dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  margin: 0.2rem 0 0.65rem;
+}
+.index-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.5rem;
+}
+.index-ref {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  border: 0;
+  background: none;
+  color: var(--soft);
+  padding: 0;
+  font-size: 0.86rem;
+  text-align: left;
+}
+.index-ref:hover {
+  color: var(--primary);
+}
+.index-ref .readout {
+  color: var(--danger);
+  font-size: 0.8rem;
+}
+.index-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-left: auto;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+.result-readout {
+  display: grid;
+  flex: 1 1 26rem;
+  gap: 0.7rem;
+  min-width: 0;
 }
 button,
 input,
@@ -149,7 +432,7 @@ select,
 textarea {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--surface);
   color: var(--text);
   outline: 0;
@@ -169,12 +452,13 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--primary);
-  box-shadow: var(--focus);
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
 }
 button:focus-visible,
 a:focus-visible {
-  outline: 0;
-  box-shadow: var(--focus);
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 ::selection {
   background: var(--primary-soft);
@@ -197,9 +481,9 @@ a:focus-visible {
   top: 0.6rem;
   left: 0.6rem;
   padding: 0.7rem 1rem;
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--primary2);
-  color: #fff;
+  color: var(--surface);
   transform: translateY(-160%);
   transition: 0.15s;
 }
@@ -218,7 +502,6 @@ a:focus-visible {
   flex-direction: column;
   border-right: 1px solid var(--line);
   background: color-mix(in srgb, var(--surface) 94%, transparent);
-  box-shadow: 8px 0 28px rgba(15, 54, 53, 0.04);
   backdrop-filter: blur(18px);
   transition: transform 0.19s;
 }
@@ -237,20 +520,23 @@ a:focus-visible {
   flex: 0 0 46px;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
-  border-radius: 13px;
-  box-shadow: var(--shadow);
-  font-size: 0.66rem;
-  font-weight: 800;
+  border-radius: 2px;
+  border: 1px solid var(--text);
+  font-family: var(--font-readout);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   line-height: 46px;
   text-align: center;
 }
 .brand-mark span:first-child {
-  background: var(--primary);
-  color: #fff;
+  background: var(--text);
+  color: var(--surface);
 }
 .brand-mark span:last-child {
-  background: var(--accent);
-  color: #27170c;
+  border-left: 1px solid var(--text);
+  background: transparent;
+  color: var(--text);
 }
 .brand strong,
 .brand small {
@@ -278,7 +564,7 @@ a:focus-visible {
   align-items: center;
   gap: 0.72rem;
   border: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   background: transparent;
   color: var(--soft);
   padding: 0.55rem 0.72rem;
@@ -300,7 +586,7 @@ a:focus-visible {
   height: 30px;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: 2px;
   background: var(--surface);
   font-size: 0.79rem;
   font-weight: 800;
@@ -308,31 +594,15 @@ a:focus-visible {
 .nav-item--active .nav-item__icon {
   border-color: transparent;
   background: var(--primary);
-  color: #fff;
+  color: var(--surface);
 }
 .sidebar-footer {
   display: grid;
-  gap: 0.55rem;
-  padding: 0.9rem 1rem 1.1rem;
+  gap: 0.4rem;
+  padding: 0.6rem 0.5rem 1rem;
   border-top: 1px solid var(--line);
   color: var(--faint);
   font-size: 0.78rem;
-}
-.status-line {
-  display: flex;
-  align-items: center;
-  gap: 0.46rem;
-}
-.status-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 0 4px var(--success-soft);
-}
-.status-dot--offline {
-  background: var(--warning);
-  box-shadow: 0 0 0 4px var(--warning-soft);
 }
 .app-main {
   min-height: 100vh;
@@ -377,15 +647,18 @@ a:focus-visible {
   flex: 0 0 42px;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface);
   color: var(--text);
-  box-shadow: var(--shadow);
   font-size: 1.15rem;
 }
 .icon-button:hover {
   border-color: var(--line2);
   background: var(--alt);
+}
+/* 桌機版的搜尋是一條有文字的欄位，圖示只在手機版露出。 */
+.search-trigger__icon {
+  display: none;
 }
 .search-trigger {
   display: flex;
@@ -395,11 +668,10 @@ a:focus-visible {
   justify-content: space-between;
   gap: 1rem;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface);
   color: var(--soft);
   padding: 0.48rem 0.65rem 0.48rem 0.85rem;
-  box-shadow: var(--shadow);
 }
 kbd {
   display: inline-flex;
@@ -407,7 +679,7 @@ kbd {
   min-height: 24px;
   border: 1px solid var(--line2);
   border-bottom-width: 2px;
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--faint);
   padding: 0.05rem 0.42rem;
@@ -421,24 +693,27 @@ kbd {
   justify-content: center;
   gap: 0.45rem;
   border: 1px solid transparent;
-  border-radius: 11px;
+  border-radius: 2px;
   padding: 0.56rem 0.9rem;
   font-weight: 700;
   line-height: 1.25;
   text-decoration: none;
   transition: 0.12s;
 }
+/* 面板上的按鍵不會浮起來，它們只是被按亮。 */
 .button:not(:disabled):hover {
-  transform: translateY(-1px);
+  border-color: var(--line2);
 }
 .button--primary {
   background: var(--primary);
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(15, 95, 98, 0.18);
+  color: var(--surface);
+}
+:root[data-theme="dark"] .button--primary {
+  color: var(--bg);
 }
 .button--primary:hover {
   background: var(--primary2);
-  color: #fff;
+  color: var(--surface);
 }
 .button--soft {
   border-color: color-mix(in srgb, var(--primary) 20%, var(--line));
@@ -456,7 +731,7 @@ kbd {
 }
 .button--danger {
   background: var(--danger);
-  color: #fff;
+  color: var(--surface);
 }
 .button--full {
   width: 100%;
@@ -495,45 +770,61 @@ kbd {
   color: var(--soft);
   font-size: 1.02rem;
 }
+/* 分區標籤是刻在面板上的字，前面帶一道刻線。 */
 .eyebrow {
-  margin: 0 0 0.18rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.3rem;
   color: var(--faint);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-family: var(--font-readout);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+.eyebrow:before {
+  width: 14px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--line2);
+  content: "";
 }
 .muted {
   color: var(--faint);
   font-size: 0.86rem;
 }
+/* 標籤是貼在儀器上的刻印小牌，不是藥丸。 */
 .badge,
 .chip {
   display: inline-flex;
-  min-height: 26px;
+  min-height: 24px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--alt);
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background: transparent;
   color: var(--soft);
-  padding: 0.16rem 0.6rem;
-  font-size: 0.76rem;
-  font-weight: 750;
+  padding: 0.1rem 0.5rem;
+  font-family: var(--font-readout);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   line-height: 1.2;
 }
 .badge--accent {
-  border-color: transparent;
-  background: var(--accent-soft);
-  color: color-mix(in srgb, var(--accent) 82%, var(--text));
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--surface);
 }
+/* 面板＝儀器上的一塊琺瑯面。只有邊框，沒有投影。 */
 .panel {
   min-width: 0;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line2);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 97%, transparent);
+  background: var(--surface);
   padding: clamp(1rem, 2vw, 1.4rem);
-  box-shadow: var(--shadow);
 }
 .panel__header {
   display: flex;
@@ -551,7 +842,7 @@ kbd {
 }
 .notice {
   border-left: 4px solid var(--accent);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 2px 2px 0;
   background: var(--accent-soft);
   color: var(--soft);
   padding: 0.75rem 0.9rem;
@@ -559,7 +850,7 @@ kbd {
 }
 .empty-card {
   border: 1px dashed var(--line2);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--soft);
   padding: 1rem;
@@ -568,23 +859,26 @@ kbd {
   display: block;
   color: var(--text);
 }
+/* 量表槽：刻了細刻度的凹槽，指針是實心的一段。與刻度尺同一家族。 */
 .meter {
   width: 100%;
-  height: 8px;
+  height: 12px;
   overflow: hidden;
-  border-radius: 999px;
-  background: var(--strong);
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(90deg, var(--tick) 0 1px, transparent 1px 10px),
+    var(--alt);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 100% 4px;
 }
 .meter > span {
   display: block;
   width: 0;
   height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    color-mix(in srgb, var(--primary) 55%, var(--accent))
-  );
+  background: var(--primary);
+  opacity: 0.85;
   transition: width 0.3s;
 }
 .dashboard-grid {
@@ -599,15 +893,12 @@ kbd {
   align-items: center;
   gap: 2rem;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--line));
-  border-radius: 24px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--primary-soft) 88%, transparent),
-    color-mix(in srgb, var(--surface) 93%, transparent)
-  );
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  /* 主面板：頂邊加粗成一道刻線，其餘留白。 */
+  border-top-width: 3px;
+  background: var(--surface);
   padding: clamp(1.3rem, 3.5vw, 2.6rem);
-  box-shadow: var(--shadow-lg);
 }
 .hero-card__content {
   max-width: 890px;
@@ -637,9 +928,7 @@ kbd {
   place-items: center;
   border-radius: 50%;
   background: conic-gradient(var(--primary) var(--progress), var(--strong) 0);
-  box-shadow:
-    inset 0 0 0 1px var(--line),
-    var(--shadow);
+  box-shadow: inset 0 0 0 1px var(--line2);
 }
 .progress-dial > div {
   display: grid;
@@ -676,7 +965,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 1rem;
-  box-shadow: var(--shadow);
 }
 .stat-card > span,
 .stat-card small {
@@ -693,7 +981,7 @@ kbd {
 }
 .exam-card {
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 1rem;
 }
@@ -708,9 +996,9 @@ kbd {
   display: inline-flex;
   min-height: 30px;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 2px;
   background: var(--primary);
-  color: #fff;
+  color: var(--surface);
   padding: 0.24rem 0.58rem;
   font-size: 0.82rem;
   font-weight: 850;
@@ -754,7 +1042,7 @@ kbd {
   justify-content: space-between;
   gap: 0.8rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.78rem;
 }
@@ -778,7 +1066,7 @@ kbd {
   min-height: 30px;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--strong);
   color: var(--text) !important;
   font-weight: 800;
@@ -801,7 +1089,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.9rem;
-  box-shadow: var(--shadow);
 }
 .compact-progress strong,
 .compact-progress span {
@@ -828,11 +1115,10 @@ kbd {
 .segmented-control > button,
 .theme-options label {
   border: 1px solid var(--line);
-  border-radius: 11px;
+  border-radius: 2px;
   background: var(--surface);
   color: var(--soft);
   padding: 0.55rem 0.8rem;
-  box-shadow: var(--shadow);
 }
 .week-tabs > button:hover,
 .document-tabs > button:hover,
@@ -856,7 +1142,7 @@ kbd {
   text-align: left;
 }
 .document-tabs small {
-  color: var(--faint);
+  color: var(--soft);
 }
 .plan-summary {
   display: flex;
@@ -883,7 +1169,6 @@ kbd {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: var(--shadow);
 }
 .day-card[data-completed="true"] {
   border-color: color-mix(in srgb, var(--success) 45%, var(--line));
@@ -898,13 +1183,16 @@ kbd {
 }
 .day-number {
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   place-items: center;
-  border-radius: 13px;
-  background: var(--primary-soft);
-  color: var(--primary2);
-  font-weight: 850;
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  color: var(--soft);
+  font-family: var(--font-readout);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
 }
 .day-card__top {
   display: flex;
@@ -933,7 +1221,7 @@ kbd {
   height: 36px;
   place-items: center;
   border: 0;
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--soft);
 }
@@ -945,7 +1233,7 @@ kbd {
   padding: 1rem;
 }
 .day-card__details section {
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.82rem;
 }
@@ -968,7 +1256,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.85rem 1rem;
-  box-shadow: var(--shadow);
 }
 .version-card > span {
   color: var(--primary);
@@ -997,7 +1284,7 @@ kbd {
 }
 .knowledge-nav nav button {
   border: 0;
-  border-radius: 9px;
+  border-radius: 2px;
   background: transparent;
   color: var(--soft);
   padding: 0.48rem 0.58rem;
@@ -1047,7 +1334,7 @@ kbd {
 .markdown-body blockquote {
   margin: 1rem 0;
   border-left: 4px solid var(--accent);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 2px 2px 0;
   background: var(--accent-soft);
   padding: 0.72rem 0.9rem;
 }
@@ -1064,7 +1351,7 @@ kbd {
   overflow-x: auto;
   margin: 0.9rem 0 1.2rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
 }
 .markdown-table table,
 .responsive-table table {
@@ -1129,7 +1416,6 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 1rem;
-  box-shadow: var(--shadow);
 }
 .term-card[data-familiar="true"] {
   border-color: color-mix(in srgb, var(--success) 45%, var(--line));
@@ -1164,7 +1450,7 @@ kbd {
   height: 34px;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--faint);
   font-size: 1.1rem;
@@ -1179,10 +1465,10 @@ kbd {
   z-index: 2;
   width: min(92vw, 640px);
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 2px;
   background: var(--surface);
   padding: clamp(1rem, 3vw, 1.7rem);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--lift);
 }
 .flashcard-face {
   display: grid;
@@ -1192,7 +1478,7 @@ kbd {
   align-content: center;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: linear-gradient(145deg, var(--alt), var(--surface));
+  background: var(--alt);
   padding: 1.5rem;
   text-align: center;
 }
@@ -1214,7 +1500,6 @@ kbd {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: var(--shadow);
 }
 .faq-item > button {
   display: grid;
@@ -1261,7 +1546,7 @@ kbd {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.6rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.75rem;
 }
@@ -1293,16 +1578,24 @@ kbd {
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   padding: 0.72rem 0.9rem;
-  box-shadow: var(--shadow);
   backdrop-filter: blur(14px);
 }
-.quiz-toolbar strong,
-.quiz-toolbar span {
-  display: block;
+/* 儀器上緣的狀態列：模式、考科、領域一列讀完，中間以刻線分隔。 */
+.quiz-toolbar > div:first-child {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.7rem;
 }
 .quiz-toolbar span {
   color: var(--faint);
   font-size: 0.82rem;
+}
+.quiz-toolbar > div:first-child > span + span:before {
+  margin-right: 0.7rem;
+  color: var(--line2);
+  content: "|";
 }
 .quiz-toolbar__right {
   display: flex;
@@ -1311,15 +1604,22 @@ kbd {
 }
 .timer {
   display: inline-flex !important;
-  min-width: 80px;
+  min-width: 84px;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: var(--primary-soft);
-  color: var(--primary2) !important;
-  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  background: var(--text);
+  color: var(--surface) !important;
+  padding: 0.32rem 0.6rem;
+  font-family: var(--font-readout);
+  font-size: 1.02rem;
   font-variant-numeric: tabular-nums;
-  font-weight: 850;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+:root[data-theme="dark"] .timer {
+  color: var(--bg) !important;
 }
 .timer--warning {
   background: var(--danger-soft);
@@ -1349,7 +1649,7 @@ kbd {
 }
 .flag-button {
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--soft);
   padding: 0.35rem 0.65rem;
@@ -1372,7 +1672,7 @@ kbd {
   align-items: center;
   gap: 0.75rem;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--text);
   padding: 0.75rem 0.85rem;
@@ -1393,18 +1693,21 @@ kbd {
 }
 .option-key {
   display: inline-grid;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   place-items: center;
   border: 1px solid var(--line2);
-  border-radius: 9px;
-  background: var(--surface);
-  font-weight: 850;
+  border-radius: 2px;
+  background: var(--alt);
+  color: var(--soft);
+  font-family: var(--font-readout);
+  font-size: 0.86rem;
+  font-weight: 600;
 }
 .answer-feedback {
   margin-top: 1rem;
   border-left: 4px solid var(--success);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 2px 2px 0;
   background: var(--success-soft);
   padding: 0.85rem 0.95rem;
 }
@@ -1415,6 +1718,215 @@ kbd {
 .answer-feedback p {
   margin: 0.35rem 0 0;
   color: var(--soft);
+}
+.matrix-list {
+  display: grid;
+  gap: 0.65rem;
+}
+.matrix-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--alt);
+  padding: 0.7rem 0.85rem;
+}
+.matrix-row[data-state="correct"] {
+  border-color: var(--success);
+  background: var(--success-soft);
+}
+.matrix-row[data-state="wrong"] {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+.matrix-index {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background: var(--surface);
+  font-weight: 850;
+}
+.matrix-text {
+  color: var(--text);
+  line-height: 1.55;
+}
+.matrix-choice {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+.matrix-choice > button {
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.4rem 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.matrix-choice > button.selected {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.matrix-choice > button.correct {
+  border-color: var(--success);
+  background: var(--success-soft);
+  color: var(--success);
+}
+.dropdown-sentence {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.4rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--alt);
+  padding: 0.95rem;
+  line-height: 2.1;
+}
+.dropdown-slot {
+  display: inline-grid;
+  gap: 0.15rem;
+  border-radius: 2px;
+}
+.dropdown-slot[data-state="correct"] {
+  outline: 2px solid var(--success);
+  outline-offset: 3px;
+}
+.dropdown-slot[data-state="wrong"] {
+  outline: 2px solid var(--danger);
+  outline-offset: 3px;
+}
+.dropdown-label {
+  color: var(--faint);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.dropdown-slot select {
+  min-width: 11rem;
+  margin: 0;
+}
+.confidence-row {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  border: 1px dashed var(--line2);
+  border-radius: 2px;
+  padding: 0.8rem 0.9rem;
+}
+.confidence-row > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+.confidence-row .button.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.rationale-block {
+  margin-top: 0.9rem;
+}
+.rationale-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.rationale-list > li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.65rem;
+  border-left: 3px solid var(--line2);
+  border-radius: 0 2px 2px 0;
+  background: var(--surface);
+  padding: 0.55rem 0.7rem;
+}
+/* 只有左緣那道刻線在說話：命中是綠，落空是紅線，沒碰到的保持安靜。 */
+.rationale-list > li[data-tone="hit"] {
+  border-left-color: var(--success);
+}
+.rationale-list > li[data-tone="miss"] {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+}
+.rationale-list p {
+  margin: 0.2rem 0 0;
+  color: var(--soft);
+}
+.rationale-verdict {
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.rationale-list > li[data-tone="hit"] .rationale-verdict {
+  border-color: var(--success);
+  color: var(--success);
+}
+.rationale-list > li[data-tone="miss"] .rationale-verdict {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.case-panel {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  background: var(--accent-soft);
+  padding: 0.9rem 1rem;
+}
+.case-panel header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.case-panel h3 {
+  margin: 0.15rem 0 0;
+}
+.case-panel p {
+  margin: 0;
+  color: var(--soft);
+  line-height: 1.7;
+}
+/* 收合區塊的容器：aria-controls 需要它在收合時仍存在，
+   所以用 v-show 而非 v-if，間距改由這一層負責。 */
+.case-panel > div[id] {
+  display: grid;
+  gap: 0.6rem;
+}
+/* 重複情境題組的規則說明：它改變了整組的作答方式，不是補充。 */
+.case-rule {
+  border-top: 1px solid var(--line2);
+  padding-top: 0.6rem;
+  color: var(--text) !important;
+  font-size: 0.86rem;
+}
+.case-panel[data-kind="solution-set"] {
+  border-color: var(--text);
+}
+.case-requirements {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text);
+}
+.lucky-list {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
 }
 .quiz-card__footer {
   margin-top: 1.2rem;
@@ -1437,7 +1949,7 @@ kbd {
   aspect-ratio: 1;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 2px;
   background: var(--alt);
   color: var(--soft);
   font-size: 0.8rem;
@@ -1464,25 +1976,23 @@ kbd {
 .question-map small {
   color: var(--faint);
 }
+/* 結果面板：頂邊那道刻線的顏色就是判讀 —— 過線是綠，沒過是紅線。 */
 .result-hero {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
-  border-left: 6px solid var(--primary);
+  gap: clamp(1rem, 4vw, 2.5rem);
+  border-top: 3px solid var(--line2);
+  flex-wrap: wrap;
 }
 .result-hero[data-level="good"] {
-  border-left-color: var(--success);
+  border-top-color: var(--success);
 }
 .result-hero[data-level="mid"] {
-  border-left-color: var(--warning);
+  border-top-color: var(--text);
 }
 .result-hero[data-level="low"] {
-  border-left-color: var(--danger);
-}
-.result-hero h2 {
-  margin: 0.15rem 0;
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  border-top-color: var(--danger);
 }
 .domain-result-list > div {
   display: grid;
@@ -1501,7 +2011,7 @@ kbd {
 }
 .answer-explanation,
 .trap-note {
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.75rem;
 }
@@ -1523,7 +2033,7 @@ kbd {
   display: grid;
   gap: 0.22rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.75rem;
 }
@@ -1553,7 +2063,7 @@ kbd {
   align-items: start;
   gap: 0.6rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.7rem;
 }
@@ -1582,17 +2092,19 @@ kbd {
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.9rem;
-  box-shadow: var(--shadow);
 }
 .source-id {
   display: inline-grid;
   min-width: 44px;
-  height: 34px;
+  height: 32px;
   place-items: center;
-  border-radius: 9px;
-  background: var(--primary-soft);
-  color: var(--primary2);
-  font-weight: 850;
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  color: var(--soft);
+  font-family: var(--font-readout);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 .source-card strong,
 .source-card small {
@@ -1666,10 +2178,10 @@ kbd {
   max-height: min(78vh, 720px);
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 2px;
   background: var(--surface);
   padding: 1rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--lift);
 }
 .search-dialog__header {
   display: flex;
@@ -1702,7 +2214,7 @@ kbd {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 0.18rem 0.65rem;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--alt);
   padding: 0.7rem;
   text-align: left;
@@ -1732,10 +2244,10 @@ kbd {
 .toast {
   border: 1px solid var(--line);
   border-left: 4px solid var(--primary);
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--surface);
   padding: 0.72rem 0.85rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--lift);
 }
 .toast[data-tone="success"] {
   border-left-color: var(--success);
@@ -1763,7 +2275,7 @@ kbd {
   }
   .sidebar {
     transform: translateX(-103%);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--lift);
   }
   .sidebar--open {
     transform: none;
@@ -1818,6 +2330,27 @@ kbd {
   :root {
     --topbar: 68px;
   }
+  /* 手機上陳述文字與是非鍵擠在同一列會把文字壓成細長條，改為上下兩段。 */
+  .matrix-row {
+    /* 列變高之後，序號要對齊第一行文字，不能浮在整列的正中間。 */
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .matrix-choice {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+  .dropdown-slot select {
+    min-width: 0;
+    width: 100%;
+  }
+  .dropdown-slot {
+    flex: 1 1 12rem;
+  }
+  /* 讀數在小螢幕不需要那麼大，否則會撐開整條刻度尺。 */
+  .readout--xl {
+    letter-spacing: 0.08em;
+  }
   body {
     font-size: 15px;
     overflow-x: hidden;
@@ -1826,29 +2359,32 @@ kbd {
     min-height: var(--topbar);
     padding-inline: 0.75rem;
   }
-  .topbar .eyebrow,
   .search-trigger span,
   .search-trigger kbd {
     display: none;
+  }
+  .topbar .eyebrow {
+    margin-bottom: 0.1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+  }
+  .topbar .eyebrow:before {
+    width: 9px;
   }
   .search-trigger {
     display: inline-grid;
     width: 42px;
     min-width: 42px;
     min-height: 42px;
+    /* 桌機版是「文字靠左、Ctrl K 靠右」的欄位，這兩個屬性必須一起重設，
+       否則只剩圖示時 space-between 會把它推到左邊。 */
+    justify-content: center;
+    gap: 0;
     place-items: center;
     padding: 0;
   }
-  .search-trigger:before {
-    content: "";
+  .search-trigger__icon {
     display: block;
-    width: 20px;
-    height: 20px;
-    background-color: currentColor;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cline x1='14.6' y1='14.6' x2='18.3' y2='18.3'/%3E%3C/svg%3E")
-      center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cline x1='14.6' y1='14.6' x2='18.3' y2='18.3'/%3E%3C/svg%3E")
-      center / contain no-repeat;
   }
   .topbar__actions {
     gap: 0.45rem;
@@ -1913,9 +2449,13 @@ kbd {
   }
   .quiz-toolbar {
     top: calc(var(--topbar) + 0.35rem);
+    /* 手機上交卷鍵必須留著 —— 沒有它就只能翻到最後一題才交得了卷。
+       右側整組寬度不夠時換到自己那一行，而不是把按鈕藏掉。 */
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
   }
-  .quiz-toolbar__right .button {
-    display: none;
+  .quiz-toolbar__right {
+    margin-left: auto;
   }
   .quiz-card {
     min-height: 0;
@@ -1934,7 +2474,7 @@ kbd {
   .search-dialog {
     width: calc(100vw - 1rem);
     max-height: calc(100vh - 1rem);
-    border-radius: 18px;
+    border-radius: 2px;
   }
   .overlay {
     padding: 0.5rem;

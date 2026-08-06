@@ -1,1 +1,36 @@
-{"name":"AZ-900 × SC-900 四週密集衝刺","short_name":"AZ／SC 衝刺","description":"互動式四週學習計畫、情境模擬題、名詞庫、FAQ 與考前速查。","lang":"zh-Hant-TW","dir":"ltr","start_url":"./#/dashboard","scope":"./","display":"standalone","background_color":"#f3f7f6","theme_color":"#0f5f62","categories":["education","productivity"],"icons":[{"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},{"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
+{
+  "name": "AZ-900 × SC-900 認證參考書",
+  "short_name": "AZ／SC 參考書",
+  "description": "200 題原創情境模擬題、175 個名詞、四週讀書計畫、索引與考前速查。",
+  "lang": "zh-Hant-TW",
+  "dir": "ltr",
+  "start_url": "./#/dashboard",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e4e7e2",
+  "theme_color": "#1f4d42",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

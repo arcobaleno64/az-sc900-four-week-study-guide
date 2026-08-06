@@ -124,6 +124,7 @@ function reset() {
             ref="fileInput"
             class="sr-only"
             type="file"
+            aria-label="選擇要匯入的學習紀錄 JSON 檔"
             accept="application/json,.json"
             @change="importData"
           />

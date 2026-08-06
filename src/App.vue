@@ -9,6 +9,7 @@ import {
 } from "vue";
 import { cycleTheme, progress } from "./store";
 import { navigate, route, routeTitles } from "./router";
+import { bookParts, markLabel } from "./book";
 import DashboardView from "./views/DashboardView.vue";
 import PlanView from "./views/PlanView.vue";
 import KnowledgeView from "./views/KnowledgeView.vue";
@@ -18,6 +19,7 @@ import FaqView from "./views/FaqView.vue";
 import ReviewView from "./views/ReviewView.vue";
 import SourcesView from "./views/SourcesView.vue";
 import SettingsView from "./views/SettingsView.vue";
+import BookIndexView from "./views/BookIndexView.vue";
 import SearchOverlay from "./components/SearchOverlay.vue";
 import ToastHost from "./components/ToastHost.vue";
 import { showToast } from "./toast";
@@ -26,7 +28,6 @@ import type { RouteName } from "./types";
 
 const mobileOpen = ref(false);
 const searchOpen = ref(false);
-const online = ref(navigator.onLine);
 const installPrompt = ref<Event | null>(null);
 const views: Record<RouteName, Component> = {
   dashboard: DashboardView,
@@ -37,6 +38,7 @@ const views: Record<RouteName, Component> = {
   faq: FaqView,
   review: ReviewView,
   sources: SourcesView,
+  bookIndex: BookIndexView,
   settings: SettingsView,
 };
 const currentView = computed(() => views[route.name]);
@@ -49,17 +51,7 @@ const themeLabels: Record<string, string> = {
 const themeLabel = computed(
   () => themeLabels[progress.theme] ?? progress.theme,
 );
-const nav = [
-  { name: "dashboard" as RouteName, label: "總覽", icon: "總" },
-  { name: "plan" as RouteName, label: "四週計畫", icon: "週" },
-  { name: "knowledge" as RouteName, label: "必備知識", icon: "知" },
-  { name: "glossary" as RouteName, label: "名詞庫", icon: "詞" },
-  { name: "quiz" as RouteName, label: "模擬題", icon: "題" },
-  { name: "faq" as RouteName, label: "FAQ／Q&A", icon: "問" },
-  { name: "review" as RouteName, label: "考前速查", icon: "查" },
-  { name: "sources" as RouteName, label: "官方來源", icon: "源" },
-  { name: "settings" as RouteName, label: "設定", icon: "設" },
-];
+const currentMark = computed(() => markLabel(route.name));
 watch(
   () => route.name,
   () => {
@@ -76,9 +68,6 @@ function onKey(event: KeyboardEvent) {
     searchOpen.value = false;
     mobileOpen.value = false;
   }
-}
-function updateOnline() {
-  online.value = navigator.onLine;
 }
 function captureInstall(event: Event) {
   event.preventDefault();
@@ -97,8 +86,6 @@ async function install() {
 }
 onMounted(() => {
   window.addEventListener("keydown", onKey);
-  window.addEventListener("online", updateOnline);
-  window.addEventListener("offline", updateOnline);
   window.addEventListener(
     "beforeinstallprompt",
     captureInstall as EventListener,
@@ -106,8 +93,6 @@ onMounted(() => {
 });
 onBeforeUnmount(() => {
   window.removeEventListener("keydown", onKey);
-  window.removeEventListener("online", updateOnline);
-  window.removeEventListener("offline", updateOnline);
   window.removeEventListener(
     "beforeinstallprompt",
     captureInstall as EventListener,
@@ -122,29 +107,54 @@ onBeforeUnmount(() => {
         <div class="brand-mark" aria-hidden="true">
           <span>AZ</span><span>SC</span>
         </div>
-        <div><strong>四週密集衝刺</strong><small>互動式學習參考書</small></div>
+        <div>
+          <strong class="readout">AZ-900 × SC-900</strong
+          ><small>認證參考書　第 1 版</small>
+        </div>
       </div>
       <nav class="primary-nav" aria-label="主要導覽">
-        <button
-          v-for="item in nav"
-          :key="item.name"
-          class="nav-item"
-          :class="{ 'nav-item--active': route.name === item.name }"
-          :aria-current="route.name === item.name ? 'page' : undefined"
-          @click="navigate(item.name)"
-        >
-          <span class="nav-item__icon" aria-hidden="true">{{ item.icon }}</span
-          ><span>{{ item.label }}</span>
-        </button>
+        <template v-for="part in bookParts" :key="part.title">
+          <p class="nav-part">{{ part.title }}</p>
+          <button
+            v-for="item in part.entries"
+            :key="item.name"
+            class="nav-item"
+            :class="{ 'nav-item--active': route.name === item.name }"
+            :aria-current="route.name === item.name ? 'page' : undefined"
+            @click="navigate(item.name)"
+          >
+            <span class="nav-item__icon readout" aria-hidden="true">{{
+              item.mark
+            }}</span
+            ><span>{{ item.label }}</span>
+          </button>
+        </template>
       </nav>
       <footer class="sidebar-footer">
-        <div class="status-line">
-          <span
-            class="status-dot"
-            :class="{ 'status-dot--offline': !online }"
-          ></span
-          >{{ online ? "已連線" : "離線模式" }}
-        </div>
+        <button
+          class="nav-item"
+          :class="{ 'nav-item--active': route.name === 'settings' }"
+          :aria-current="route.name === 'settings' ? 'page' : undefined"
+          @click="navigate('settings')"
+        >
+          <span class="nav-item__icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
+              />
+            </svg> </span
+          ><span>設定</span>
+        </button>
         <small>資料基準：{{ examMeta.lastVerified }}</small>
       </footer>
     </aside>
@@ -165,7 +175,8 @@ onBeforeUnmount(() => {
             ☰
           </button>
           <div>
-            <p class="eyebrow">AZ-900 × SC-900</p>
+            <!-- 書眉：告訴讀者現在翻到書的哪一部分。 -->
+            <p class="eyebrow">{{ currentMark || "AZ-900 × SC-900" }}</p>
             <h1>{{ title }}</h1>
           </div>
         </div>
@@ -182,6 +193,21 @@ onBeforeUnmount(() => {
             aria-label="開啟全站搜尋"
             @click="searchOpen = true"
           >
+            <svg
+              class="search-trigger__icon"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m15.6 15.6 4.2 4.2" />
+            </svg>
             <span>搜尋教材與題庫</span><kbd>Ctrl K</kbd>
           </button>
           <button
