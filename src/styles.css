@@ -1899,6 +1899,12 @@ kbd {
   color: var(--soft);
   line-height: 1.7;
 }
+/* 收合區塊的容器：aria-controls 需要它在收合時仍存在，
+   所以用 v-show 而非 v-if，間距改由這一層負責。 */
+.case-panel > div[id] {
+  display: grid;
+  gap: 0.6rem;
+}
 .case-requirements {
   display: grid;
   gap: 0.3rem;

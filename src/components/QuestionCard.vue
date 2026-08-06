@@ -109,6 +109,7 @@ const segmentOf = (id: string) =>
       <span class="matrix-choice">
         <button
           v-for="choice in [true, false]"
+          type="button"
           :key="String(choice)"
           :class="{
             selected: matrixValue(answer, statement.id) === choice,
@@ -179,6 +180,7 @@ const segmentOf = (id: string) =>
   >
     <button
       v-for="(option, index) in options"
+      type="button"
       :key="option.id"
       :class="{
         selected: isOptionSelected(question, answer, option.id),
