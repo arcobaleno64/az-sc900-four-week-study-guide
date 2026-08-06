@@ -144,7 +144,7 @@ watch(
       </button>
     </div>
     <div class="knowledge-layout">
-      <aside class="panel knowledge-nav">
+      <div class="panel knowledge-nav">
         <label class="search-field"
           ><span class="sr-only">搜尋本章標題</span
           ><input v-model="filter" type="search" placeholder="搜尋本章標題"
@@ -160,7 +160,7 @@ watch(
             >{{ heading.title }}</button
           ><span v-if="!headings.length" class="muted">沒有符合的標題。</span>
         </nav>
-      </aside>
+      </div>
       <article
         class="panel knowledge-article markdown-body"
         v-html="html"

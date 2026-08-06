@@ -144,11 +144,6 @@ const blueprint = computed(() => {
   }));
 });
 
-/** 結果頁的門檻尺：量尺是 0～1000 的量尺分數，紅線刻在及格的 700。 */
-const scaled = computed(() =>
-  result.value ? Math.round((result.value.score / 100) * 1000) : 0,
-);
-
 function stopTimer() {
   if (timer) {
     clearInterval(timer);
@@ -608,7 +603,7 @@ onBeforeUnmount(stopTimer);
             </button>
           </footer>
         </article>
-        <aside class="panel question-map">
+        <nav class="panel question-map" aria-label="題目導覽">
           <header>
             <strong>題目導覽</strong
             ><span>{{ answeredCount }}/{{ session.length }}</span>
@@ -629,7 +624,7 @@ onBeforeUnmount(stopTimer);
             </button>
           </div>
           <small>實心框代表已作答；右上點代表已標記。</small>
-        </aside>
+        </nav>
       </div></template
     >
 
@@ -641,20 +636,22 @@ onBeforeUnmount(stopTimer);
         "
       >
         <div class="result-readout">
-          <p class="eyebrow">Scaled score</p>
-          <strong class="readout readout--xl">{{ scaled }}</strong>
+          <p class="eyebrow">本輪答對率</p>
+          <strong class="readout readout--xl"
+            >{{ result.score }}<span class="readout-unit">%</span></strong
+          >
           <div class="scale scale--threshold">
             <div class="scale__track">
               <div class="scale__band" :style="{ width: `${result.score}%` }">
                 <span style="width: 100%"></span>
               </div>
-              <i class="scale__mark" data-label="700"></i>
+              <span class="scale__mark"
+                ><span class="scale__mark-label">本書門檻 85%</span></span
+              >
             </div>
           </div>
           <p>
-            {{ result.correct }}／{{ result.total }} 題正確（{{
-              result.score
-            }}%）。{{
+            {{ result.correct }}／{{ result.total }} 題正確。{{
               result.score >= 85
                 ? "已達本教材建議門檻，仍應檢查錯題理由。"
                 : result.score >= 70
@@ -663,8 +660,8 @@ onBeforeUnmount(stopTimer);
             }}
           </p>
           <p class="muted">
-            量尺分數為本站依答對比例換算，官方 700
-            採用的量尺不公開，不能直接對照。
+            這是答對率，不是量尺分數。官方以 1000 分制的量尺計分、及格線為
+            700，換算方式不公開，無法從答對率推算。85% 是本教材自訂的保守門檻。
           </p>
         </div>
         <div class="result-actions">

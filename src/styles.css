@@ -114,6 +114,11 @@ body {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+.readout-unit {
+  margin-left: 0.12em;
+  font-size: 0.42em;
+  letter-spacing: 0;
+}
 .readout--xl {
   display: block;
   font-size: clamp(2.6rem, 7vw, 4.4rem);
@@ -199,12 +204,13 @@ body {
   position: absolute;
   top: -3px;
   bottom: -3px;
-  left: 70%;
+  /* 85% 是本教材自訂的保守門檻，不是官方及格線。 */
+  left: 85%;
   width: 2px;
   background: var(--danger);
 }
-.scale__mark:after {
-  content: attr(data-label);
+/* 標籤放在 DOM 裡而不是 CSS content —— 生成內容在輔助科技上不可靠。 */
+.scale__mark-label {
   position: absolute;
   top: calc(100% + 0.25rem);
   left: 50%;
@@ -213,6 +219,7 @@ body {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  white-space: nowrap;
   transform: translateX(-50%);
 }
 .quiz-blueprint {
@@ -1145,7 +1152,7 @@ kbd {
   text-align: left;
 }
 .document-tabs small {
-  color: var(--faint);
+  color: var(--soft);
 }
 .plan-summary {
   display: flex;
