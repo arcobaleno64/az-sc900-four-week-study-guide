@@ -9,6 +9,7 @@ import {
 } from "vue";
 import { cycleTheme, progress } from "./store";
 import { navigate, route, routeTitles } from "./router";
+import { bookParts, markLabel } from "./book";
 import DashboardView from "./views/DashboardView.vue";
 import PlanView from "./views/PlanView.vue";
 import KnowledgeView from "./views/KnowledgeView.vue";
@@ -18,6 +19,7 @@ import FaqView from "./views/FaqView.vue";
 import ReviewView from "./views/ReviewView.vue";
 import SourcesView from "./views/SourcesView.vue";
 import SettingsView from "./views/SettingsView.vue";
+import BookIndexView from "./views/BookIndexView.vue";
 import SearchOverlay from "./components/SearchOverlay.vue";
 import ToastHost from "./components/ToastHost.vue";
 import { showToast } from "./toast";
@@ -37,6 +39,7 @@ const views: Record<RouteName, Component> = {
   faq: FaqView,
   review: ReviewView,
   sources: SourcesView,
+  bookIndex: BookIndexView,
   settings: SettingsView,
 };
 const currentView = computed(() => views[route.name]);
@@ -49,17 +52,7 @@ const themeLabels: Record<string, string> = {
 const themeLabel = computed(
   () => themeLabels[progress.theme] ?? progress.theme,
 );
-const nav = [
-  { name: "dashboard" as RouteName, label: "總覽", icon: "總" },
-  { name: "plan" as RouteName, label: "四週計畫", icon: "週" },
-  { name: "knowledge" as RouteName, label: "必備知識", icon: "知" },
-  { name: "glossary" as RouteName, label: "名詞庫", icon: "詞" },
-  { name: "quiz" as RouteName, label: "模擬題", icon: "題" },
-  { name: "faq" as RouteName, label: "FAQ／Q&A", icon: "問" },
-  { name: "review" as RouteName, label: "考前速查", icon: "查" },
-  { name: "sources" as RouteName, label: "官方來源", icon: "源" },
-  { name: "settings" as RouteName, label: "設定", icon: "設" },
-];
+const currentMark = computed(() => markLabel(route.name));
 watch(
   () => route.name,
   () => {
@@ -122,20 +115,31 @@ onBeforeUnmount(() => {
         <div class="brand-mark" aria-hidden="true">
           <span>AZ</span><span>SC</span>
         </div>
-        <div><strong>四週密集衝刺</strong><small>互動式學習參考書</small></div>
+        <div>
+          <strong class="readout">AZ-900 × SC-900</strong
+          ><small>認證參考書　第 1 版</small>
+        </div>
       </div>
       <nav class="primary-nav" aria-label="主要導覽">
-        <button
-          v-for="item in nav"
-          :key="item.name"
-          class="nav-item"
-          :class="{ 'nav-item--active': route.name === item.name }"
-          :aria-current="route.name === item.name ? 'page' : undefined"
-          @click="navigate(item.name)"
-        >
-          <span class="nav-item__icon" aria-hidden="true">{{ item.icon }}</span
-          ><span>{{ item.label }}</span>
-        </button>
+        <template v-for="part in bookParts" :key="part.title">
+          <p class="nav-part">{{ part.title }}</p>
+          <button
+            v-for="item in part.entries"
+            :key="item.name"
+            class="nav-item"
+            :class="{ 'nav-item--active': route.name === item.name }"
+            :aria-current="route.name === item.name ? 'page' : undefined"
+            @click="navigate(item.name)"
+          >
+            <span
+              v-if="item.mark"
+              class="nav-item__icon readout"
+              aria-hidden="true"
+              >{{ item.mark }}</span
+            ><span v-else class="nav-item__icon nav-item__icon--blank"></span
+            ><span>{{ item.label }}</span>
+          </button>
+        </template>
       </nav>
       <footer class="sidebar-footer">
         <div class="status-line">
@@ -165,7 +169,8 @@ onBeforeUnmount(() => {
             ☰
           </button>
           <div>
-            <p class="eyebrow">AZ-900 × SC-900</p>
+            <!-- 書眉：告訴讀者現在翻到書的哪一部分。 -->
+            <p class="eyebrow">{{ currentMark || "AZ-900 × SC-900" }}</p>
             <h1>{{ title }}</h1>
           </div>
         </div>
@@ -182,6 +187,21 @@ onBeforeUnmount(() => {
             aria-label="開啟全站搜尋"
             @click="searchOpen = true"
           >
+            <svg
+              class="search-trigger__icon"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m15.6 15.6 4.2 4.2" />
+            </svg>
             <span>搜尋教材與題庫</span><kbd>Ctrl K</kbd>
           </button>
           <button

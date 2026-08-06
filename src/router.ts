@@ -15,6 +15,7 @@ const names = new Set<RouteName>([
   "faq",
   "review",
   "sources",
+  "bookIndex",
   "settings",
 ]);
 function parse() {
@@ -45,12 +46,13 @@ if (!location.hash) location.hash = "#/dashboard";
 parse();
 export const routeTitles: Record<RouteName, string> = {
   dashboard: "總覽",
-  plan: "四週計畫",
+  plan: "四週讀書計畫",
   knowledge: "必備知識",
   glossary: "名詞庫",
   quiz: "模擬題",
   faq: "FAQ／Q&A",
   review: "考前速查",
   sources: "官方來源",
+  bookIndex: "索引",
   settings: "設定",
 };

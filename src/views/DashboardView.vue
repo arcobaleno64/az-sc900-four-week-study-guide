@@ -56,13 +56,47 @@ function countdown(date: string) {
   <section class="page-stack">
     <div class="page-intro">
       <div>
-        <span class="badge badge--accent">4 週／2 科／1 個入口</span>
+        <span class="badge badge--accent">2 科／1 個入口</span>
         <h2>總覽</h2>
         <p>
           把教材、題庫、名詞與複習節奏放在同一個地方。進度只保存在這個瀏覽器，不會為了幾個核取方塊替你建立另一套會員宇宙。
         </p>
       </div>
     </div>
+
+    <!--
+      版次頁。對一本認證參考書來說，時效就是全部的價值 ——
+      讀者第一件該知道的事是這本書對到哪一版考綱、以及它不是什麼。
+    -->
+    <section class="panel colophon">
+      <p class="eyebrow">Colophon</p>
+      <h2>關於這本書</h2>
+      <dl class="colophon-grid">
+        <div>
+          <dt class="readout--label">版次</dt>
+          <dd class="readout">第 1 版</dd>
+        </div>
+        <div>
+          <dt class="readout--label">資料基準</dt>
+          <dd class="readout">{{ examMeta.lastVerified }}</dd>
+        </div>
+        <div v-for="exam in examMeta.exams" :key="exam.code">
+          <dt class="readout--label">{{ exam.code }} 技能清單</dt>
+          <dd class="readout">{{ exam.effectiveDate }}</dd>
+        </div>
+        <div>
+          <dt class="readout--label">收錄</dt>
+          <dd>
+            <span class="readout">{{ summary.questions }}</span> 題、<span
+              class="readout"
+              >{{ terms.length }}</span
+            >
+            個名詞、<span class="readout">{{ examMeta.exams.length }}</span> 科
+          </dd>
+        </div>
+      </dl>
+      <p class="colophon-note">{{ examMeta.disclaimer }}</p>
+    </section>
     <div class="dashboard-grid">
       <section class="hero-card">
         <div class="hero-card__content">
