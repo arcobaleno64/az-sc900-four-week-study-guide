@@ -2567,3 +2567,10 @@ kbd {
     text-decoration: none;
   }
 }
+/* Crawlable fallback in index.html, visible only until the app mounts. */
+.boot {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  color: var(--soft);
+}

@@ -48,6 +48,11 @@ self.addEventListener("fetch", (e) => {
   const u = new URL(r.url);
   if (u.origin !== self.location.origin) return;
   if (r.mode === "navigate") {
+    // Only the app shell is cached for offline use. Other paths are the
+    // read-only pages from scripts/static-pages.mjs; caching one of them as
+    // index.html would open that page instead of the app when offline.
+    const scope = new URL("./", self.location.href).pathname;
+    if (u.pathname !== scope && u.pathname !== `${scope}index.html`) return;
     e.respondWith(
       fetch(r)
         .then((x) => {

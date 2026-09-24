@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://az-sc900-study-guide.t11306458.workers.dev/sitemap.xml
