@@ -176,3 +176,15 @@ test("service worker 只接手 app shell 的導覽，純文字頁交給網路", 
     "純文字頁不得被快取成 index.html",
   );
 });
+
+test("首頁與 manifest 的題數、名詞數跟題庫一致", () => {
+  const terms = content.glossary.categories.reduce(
+    (n: number, c: Q) => n + c.terms.length,
+    0,
+  );
+  for (const file of ["../index.html", "../public/manifest.webmanifest"]) {
+    const text = readFileSync(new URL(file, import.meta.url), "utf8");
+    assert.ok(text.includes(`${content.questions.length} 題`), `${file} 題數`);
+    assert.ok(text.includes(`${terms} 個名詞`), `${file} 名詞數`);
+  }
+});
